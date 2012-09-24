@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPassagemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_linha}" for="linha" />
+                    <h:selectOneMenu id="linha" value="#{passagemController.selected.linha}" title="#{bundle.EditPassagemTitle_linha}" >
+                        <f:selectItems value="#{linhaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_rota}" for="rota" />
+                    <h:selectOneMenu id="rota" value="#{passagemController.selected.rota}" title="#{bundle.EditPassagemTitle_rota}" >
+                        <f:selectItems value="#{rotaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_onibus}" for="onibus" />
+                    <h:selectOneMenu id="onibus" value="#{passagemController.selected.onibus}" title="#{bundle.EditPassagemTitle_onibus}" >
+                        <f:selectItems value="#{onibusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_assento}" for="assento" />
+                    <h:selectOneMenu id="assento" value="#{passagemController.selected.assento}" title="#{bundle.EditPassagemTitle_assento}" >
+                        <f:selectItems value="#{assentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_horaSaida}" for="horaSaida" />
+                    <h:inputText id="horaSaida" value="#{passagemController.selected.horaSaida}" title="#{bundle.EditPassagemTitle_horaSaida}" />
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_horaChegada}" for="horaChegada" />
+                    <h:inputText id="horaChegada" value="#{passagemController.selected.horaChegada}" title="#{bundle.EditPassagemTitle_horaChegada}" />
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_dia}" for="dia" />
+                    <h:inputText id="dia" value="#{passagemController.selected.dia}" title="#{bundle.EditPassagemTitle_dia}" />
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_usuario}" for="usuario" />
+                    <h:selectOneMenu id="usuario" value="#{passagemController.selected.usuario}" title="#{bundle.EditPassagemTitle_usuario}" >
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_funcionario}" for="funcionario" />
+                    <h:selectOneMenu id="funcionario" value="#{passagemController.selected.funcionario}" title="#{bundle.EditPassagemTitle_funcionario}" >
+                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPassagemLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{passagemController.selected.id}" title="#{bundle.EditPassagemTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{passagemController.update}" value="#{bundle.EditPassagemSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPassagemViewLink}"/>
+                <br />
+                <h:commandLink action="#{passagemController.prepareList}" value="#{bundle.EditPassagemShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPassagemIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

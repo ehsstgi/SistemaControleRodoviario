@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPassagemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPassagemLabel_linha}"/>
+                    <h:outputText value="#{passagemController.selected.linha}" title="#{bundle.ViewPassagemTitle_linha}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_rota}"/>
+                    <h:outputText value="#{passagemController.selected.rota}" title="#{bundle.ViewPassagemTitle_rota}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_onibus}"/>
+                    <h:outputText value="#{passagemController.selected.onibus}" title="#{bundle.ViewPassagemTitle_onibus}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_assento}"/>
+                    <h:outputText value="#{passagemController.selected.assento}" title="#{bundle.ViewPassagemTitle_assento}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_horaSaida}"/>
+                    <h:outputText value="#{passagemController.selected.horaSaida}" title="#{bundle.ViewPassagemTitle_horaSaida}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_horaChegada}"/>
+                    <h:outputText value="#{passagemController.selected.horaChegada}" title="#{bundle.ViewPassagemTitle_horaChegada}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_dia}"/>
+                    <h:outputText value="#{passagemController.selected.dia}" title="#{bundle.ViewPassagemTitle_dia}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_usuario}"/>
+                    <h:outputText value="#{passagemController.selected.usuario}" title="#{bundle.ViewPassagemTitle_usuario}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_funcionario}"/>
+                    <h:outputText value="#{passagemController.selected.funcionario}" title="#{bundle.ViewPassagemTitle_funcionario}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_id}"/>
+                    <h:outputText value="#{passagemController.selected.id}" title="#{bundle.ViewPassagemTitle_id}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{passagemController.destroyAndView}" value="#{bundle.ViewPassagemDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPassagemEditLink}"/>
+                <br />
+                <h:commandLink action="#{passagemController.prepareCreate}" value="#{bundle.ViewPassagemCreateLink}" />
+                <br />
+                <h:commandLink action="#{passagemController.prepareList}" value="#{bundle.ViewPassagemShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPassagemIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

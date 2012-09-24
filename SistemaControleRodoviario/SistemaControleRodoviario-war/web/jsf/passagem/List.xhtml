@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPassagemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPassagemEmpty}" rendered="#{passagemController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{passagemController.items.rowCount > 0}">
+                    <h:outputText value="#{passagemController.pagination.pageFirstItem + 1}..#{passagemController.pagination.pageLastItem + 1}/#{passagemController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{passagemController.previous}" value="#{bundle.Previous} #{passagemController.pagination.pageSize}" rendered="#{passagemController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{passagemController.next}" value="#{bundle.Next} #{passagemController.pagination.pageSize}" rendered="#{passagemController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{passagemController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_linha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.linha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_rota}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rota}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_onibus}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.onibus}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_assento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.assento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_horaSaida}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaSaida}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_horaChegada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaChegada}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_dia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dia}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_usuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_funcionario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.funcionario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{passagemController.prepareView}" value="#{bundle.ListPassagemViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{passagemController.prepareEdit}" value="#{bundle.ListPassagemEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{passagemController.destroy}" value="#{bundle.ListPassagemDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{passagemController.prepareCreate}" value="#{bundle.ListPassagemCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPassagemIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

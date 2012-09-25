@@ -5,9 +5,11 @@
 package ejb;
 
 import entity.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -15,6 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> {
+
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
 
@@ -23,8 +26,14 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         return em;
     }
 
+    public List<Usuario> verificaLogin(Usuario usuario) {
+        Query verificaLogin = getEntityManager().createNamedQuery("verificaLogin");
+        verificaLogin.setParameter("nome", usuario.getNome());
+        verificaLogin.setParameter("senha", usuario.getSenha());
+        return verificaLogin.getResultList();
+    }
+
     public UsuarioFacade() {
         super(Usuario.class);
     }
-    
 }

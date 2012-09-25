@@ -6,6 +6,7 @@ import jsf.util.PaginationHelper;
 import ejb.UsuarioFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -125,6 +126,20 @@ public class UsuarioController implements Serializable {
             // all items were removed - go back to list
             recreateModel();
             return "List";
+        }
+    }
+
+    public String login() {
+        try {
+            List<Usuario> usuarioLogin = getFacade().verificaLogin(current);
+            if (usuarioLogin.isEmpty()) {
+               throw new Exception();
+            }else{
+                return "MenuPrincipal";
+            }
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
         }
     }
 

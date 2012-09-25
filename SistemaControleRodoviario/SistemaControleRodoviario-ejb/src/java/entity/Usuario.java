@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -17,6 +18,8 @@ import javax.persistence.OneToMany;
  * @author Eduardo
  */
 @Entity
+@NamedQuery( name="verificaLogin",
+        query="SELECT OBJECT(u) FROM Usuario u WHERE u.nome = :nome AND u.senha = :senha")
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

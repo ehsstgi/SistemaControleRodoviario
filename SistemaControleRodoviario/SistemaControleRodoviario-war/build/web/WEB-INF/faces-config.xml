@@ -26,7 +26,21 @@
     <navigation-rule>
         <from-view-id>/menuPrincipal.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>Exit</from-outcome>
+            <from-outcome>Index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/jsf/usuario/View.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/jsf/usuario/Create.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>

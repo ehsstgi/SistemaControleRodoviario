@@ -83,7 +83,7 @@ public class UsuarioController implements Serializable {
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
-            return prepareCreate();
+            return "Index";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -113,20 +113,22 @@ public class UsuarioController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        return "List";
+        return "Index";
     }
 
     public String destroyAndView() {
         performDestroy();
-        recreateModel();
-        updateCurrentItem();
-        if (selectedItemIndex >= 0) {
-            return "View";
-        } else {
-            // all items were removed - go back to list
-            recreateModel();
-            return "List";
-        }
+//        recreateModel();
+//        updateCurrentItem();
+//        if (selectedItemIndex >= 0) {
+//            return "View";
+//        } else {
+//            // all items were removed - go back to list
+//            recreateModel();
+//            return "List";
+//        }
+        current=null;
+        return "Index";
     }
 
     public String login() {
@@ -146,7 +148,7 @@ public class UsuarioController implements Serializable {
     
     public String exit(){
         current=null;
-        return "Exit";
+        return "Index";
     }
 
     private void performDestroy() {

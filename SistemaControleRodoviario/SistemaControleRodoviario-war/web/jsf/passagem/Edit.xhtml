@@ -41,12 +41,7 @@
                     <h:selectOneMenu id="usuario" value="#{passagemController.selected.usuario}" title="#{bundle.EditPassagemTitle_usuario}" >
                         <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditPassagemLabel_funcionario}" for="funcionario" />
-                    <h:selectOneMenu id="funcionario" value="#{passagemController.selected.funcionario}" title="#{bundle.EditPassagemTitle_funcionario}" >
-                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditPassagemLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{passagemController.selected.id}" title="#{bundle.EditPassagemTitle_id}" />
+                   
                 </h:panelGrid>
                 <h:commandLink action="#{passagemController.update}" value="#{bundle.EditPassagemSaveLink}"/>
                 <br />
@@ -56,7 +51,7 @@
                 <h:commandLink action="#{passagemController.prepareList}" value="#{bundle.EditPassagemShowAllLink}" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.EditPassagemIndexLink}" />
+                <h:link outcome="/menuPrincipal" value="#{bundle.EditPassagemIndexLink}" />
             </h:form>
         </ui:define>
     </ui:composition>

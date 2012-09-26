@@ -38,15 +38,11 @@
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_dia}" for="dia" />
                     <h:inputText id="dia" value="#{passagemController.selected.dia}" title="#{bundle.CreatePassagemTitle_dia}" />
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_usuario}" for="usuario" />
-                    <h:selectOneMenu id="usuario" value="#{passagemController.selected.usuario}" title="#{bundle.CreatePassagemTitle_usuario}" >
+                    <h:selectOneMenu id="usuario"  value="#{usuarioController.selected}" title="#{bundle.CreatePassagemTitle_usuario}" >
                         <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreatePassagemLabel_funcionario}" for="funcionario" />
-                    <h:selectOneMenu id="funcionario" value="#{passagemController.selected.funcionario}" title="#{bundle.CreatePassagemTitle_funcionario}" >
-                        <f:selectItems value="#{funcionarioController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreatePassagemLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{passagemController.selected.id}" title="#{bundle.CreatePassagemTitle_id}" />
+                   
+                   
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{passagemController.create}" value="#{bundle.CreatePassagemSaveLink}" />
@@ -55,7 +51,7 @@
                 <h:commandLink action="#{passagemController.prepareList}" value="#{bundle.CreatePassagemShowAllLink}" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreatePassagemIndexLink}"/>
+                <h:link outcome="/menuPrincipal" value="#{bundle.CreatePassagemIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

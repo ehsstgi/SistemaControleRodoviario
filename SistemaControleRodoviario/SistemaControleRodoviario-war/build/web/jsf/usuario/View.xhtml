@@ -21,10 +21,7 @@
                     <h:outputText value="#{usuarioController.selected.senha}" title="#{bundle.ViewUsuarioTitle_senha}"/>
                     <h:outputText value="#{bundle.ViewUsuarioLabel_rg}"/>
                     <h:outputText value="#{usuarioController.selected.rg}" title="#{bundle.ViewUsuarioTitle_rg}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioLabel_passagens}"/>
-                    <h:outputText value="#{usuarioController.selected.passagens}" title="#{bundle.ViewUsuarioTitle_passagens}"/>
-                    <h:outputText value="#{bundle.ViewUsuarioLabel_id}"/>
-                    <h:outputText value="#{usuarioController.selected.id}" title="#{bundle.ViewUsuarioTitle_id}"/>
+                   
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{usuarioController.destroyAndView}" value="#{bundle.ViewUsuarioDestroyLink}"/>
@@ -32,12 +29,8 @@
                 <br />
                 <h:link outcome="Edit" value="#{bundle.ViewUsuarioEditLink}"/>
                 <br />
-                <h:commandLink action="#{usuarioController.prepareCreate}" value="#{bundle.ViewUsuarioCreateLink}" />
-                <br />
-                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.ViewUsuarioShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewUsuarioIndexLink}"/>
+               
+                <h:link outcome="/menuPrincipal" value="#{bundle.ViewUsuarioIndexLink}"/>
 
             </h:form>
         </ui:define>

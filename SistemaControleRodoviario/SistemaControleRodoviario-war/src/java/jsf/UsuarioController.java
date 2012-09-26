@@ -135,12 +135,18 @@ public class UsuarioController implements Serializable {
             if (usuarioLogin.isEmpty()) {
                throw new Exception();
             }else{
+                current = usuarioLogin.get(0);
                 return "MenuPrincipal";
             }
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
+    }
+    
+    public String exit(){
+        current=null;
+        return "Exit";
     }
 
     private void performDestroy() {

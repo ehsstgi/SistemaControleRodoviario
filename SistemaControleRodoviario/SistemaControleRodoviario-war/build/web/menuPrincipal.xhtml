@@ -11,12 +11,13 @@
         <br />
         <h:link outcome="/jsf/passagem/List" value="Show All Passagem Items"/>
         <br />
-        <h:link outcome="/jsf/usuario/Edit" value="Editar Dados Cadastrais"/>
-        <h:commandLink action="#{usuarioController.prepareView}" value="#{bundle.ListUsuarioViewLink}"/>
-        <h:outputText value=" "/>
-        <h:commandLink action="#{usuarioController.prepareEdit}" value="#{bundle.ListUsuarioEditLink}"/>Ï
+        <h:link outcome="/jsf/usuario/Edit" value="Editar Dados de Cadastro"/>
+        <br/>
+        <h:link outcome="/jsf/usuario/View" value="Exibir Dados de Cadastro"/>
+        <br/>
+        <h:form>
+         <h:commandLink action="#{usuarioController.exit}" value="#{bundle.LoginSair}"/>
+         </h:form>
     </h:body>
-
-
 </html>
 

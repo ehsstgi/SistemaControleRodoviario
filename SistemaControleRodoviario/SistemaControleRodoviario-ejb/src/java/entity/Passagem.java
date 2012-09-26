@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,6 +21,12 @@ import javax.persistence.TemporalType;
  * @author Eduardo
  */
 @Entity
+@NamedQueries({
+@NamedQuery(   name="passagemPorUsuario",
+        query="SELECT OBJECT(p) FROM Passagem p WHERE p.usuario = :usuario"),
+@NamedQuery(   name="passagemPorFuncionario",
+        query="SELECT OBJECT(p) FROM Passagem p WHERE p.funcionario = :funcionario"),
+        })
 public class Passagem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,6 +50,15 @@ public class Passagem implements Serializable {
     private Usuario usuario;
     @ManyToOne
     private Funcionario funcionario;
+    private double valor;
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
 
     public Linha getLinha() {
         return linha;

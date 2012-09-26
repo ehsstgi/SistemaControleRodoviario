@@ -32,6 +32,16 @@ public class Rota implements Serializable {
     private Calendar horaOrigem;
     @Temporal(TemporalType.DATE)
     private Calendar horaDestino;
+    private double valor;
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+    
 
     public Cidade getOrigem() {
         return origem;

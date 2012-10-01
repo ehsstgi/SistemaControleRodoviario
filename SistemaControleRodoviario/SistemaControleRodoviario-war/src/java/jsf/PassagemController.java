@@ -6,6 +6,7 @@ import jsf.util.PaginationHelper;
 import ejb.PassagemFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -221,6 +222,20 @@ public class PassagemController implements Serializable {
             } else {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Passagem.class.getName());
             }
+        }
+    }
+    public String passagemPorUsuario() {
+        try {
+            List<Passagem> listaPassagem = getFacade().passagemPorUsuario(current);
+            if (listaPassagem.isEmpty()) {
+               throw new Exception();
+            }else{
+                
+                return "MenuPrincipal";
+            }
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return null;
         }
     }
 }

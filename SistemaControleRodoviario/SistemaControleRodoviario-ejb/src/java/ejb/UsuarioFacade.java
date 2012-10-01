@@ -16,7 +16,7 @@ import javax.persistence.Query;
  * @author Eduardo
  */
 @Stateless
-public class UsuarioFacade extends AbstractFacade<Usuario> {
+public class UsuarioFacade extends AbstractFacade<Usuario>{ //implements InterfaceRemota<Usuario>{
 
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;

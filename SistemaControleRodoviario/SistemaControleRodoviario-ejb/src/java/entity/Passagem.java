@@ -26,6 +26,8 @@ import javax.persistence.TemporalType;
         query="SELECT OBJECT(p) FROM Passagem p WHERE p.usuario = :usuario"),
 @NamedQuery(   name="passagemPorFuncionario",
         query="SELECT OBJECT(p) FROM Passagem p WHERE p.funcionario = :funcionario"),
+@NamedQuery(   name="passagemWeb",
+        query="SELECT OBJECT(p) FROM Passagem p WHERE p.usuario IS NOT Null"),
         })
 public class Passagem implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -51,6 +53,24 @@ public class Passagem implements Serializable {
     @ManyToOne
     private Funcionario funcionario;
     private double valor;
+    private String nomeUsuario;
+    private String RgUsuario;
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getRgUsuario() {
+        return RgUsuario;
+    }
+
+    public void setRgUsuario(String RgUsuario) {
+        this.RgUsuario = RgUsuario;
+    }
 
     public double getValor() {
         return valor;
@@ -131,8 +151,6 @@ public class Passagem implements Serializable {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-    
-    
 
     public Long getId() {
         return id;

@@ -817,14 +817,16 @@ exists or setup the property manually. For example like this:
         <basename file="${file.reference.javaee.jar}" property="manifest.file.reference.javaee.jar"/>
         <basename file="${file.reference.jndi-properties.jar}" property="manifest.file.reference.jndi-properties.jar"/>
         <basename file="${file.reference.mysql-connector-java-5.1.21-bin.jar}" property="manifest.file.reference.mysql-connector-java-5.1.21-bin.jar"/>
+        <basename file="${libs.swing-layout.classpath}" property="manifest.libs.swing-layout.classpath"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 jar-6 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 jar-6 jar-7 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.reference.SistemaControleRodoviario-ejb.dist}"/>
             <attribute name="jar-2-Extension-Name" value="${manifest.file.reference.appserv-rt.jar}"/>
             <attribute name="jar-3-Extension-Name" value="${manifest.file.reference.gf-client.jar}"/>
             <attribute name="jar-4-Extension-Name" value="${manifest.file.reference.javaee.jar}"/>
             <attribute name="jar-5-Extension-Name" value="${manifest.file.reference.jndi-properties.jar}"/>
             <attribute name="jar-6-Extension-Name" value="${manifest.file.reference.mysql-connector-java-5.1.21-bin.jar}"/>
+            <attribute name="jar-7-Extension-Name" value="${manifest.libs.swing-layout.classpath}"/>
         </manifest>
     </target>
     <target depends="compile" if="dist.ear.dir" name="library-inclusion-in-manifest">
@@ -834,8 +836,9 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.javaee.jar}" manifestproperty="manifest.file.reference.javaee.jar" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jndi-properties.jar}" manifestproperty="manifest.file.reference.jndi-properties.jar" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.mysql-connector-java-5.1.21-bin.jar}" manifestproperty="manifest.file.reference.mysql-connector-java-5.1.21-bin.jar" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${libs.swing-layout.classpath}" manifestproperty="manifest.libs.swing-layout.classpath" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${manifest.reference.SistemaControleRodoviario-ejb.dist} ${manifest.file.reference.appserv-rt.jar} lib/${manifest.file.reference.appserv-rt.jar} ${manifest.file.reference.gf-client.jar} lib/${manifest.file.reference.gf-client.jar} ${manifest.file.reference.javaee.jar} lib/${manifest.file.reference.javaee.jar} ${manifest.file.reference.jndi-properties.jar} lib/${manifest.file.reference.jndi-properties.jar} ${manifest.file.reference.mysql-connector-java-5.1.21-bin.jar} lib/${manifest.file.reference.mysql-connector-java-5.1.21-bin.jar} "/>
+            <attribute name="Class-Path" value="${manifest.reference.SistemaControleRodoviario-ejb.dist} ${manifest.file.reference.appserv-rt.jar} lib/${manifest.file.reference.appserv-rt.jar} ${manifest.file.reference.gf-client.jar} lib/${manifest.file.reference.gf-client.jar} ${manifest.file.reference.javaee.jar} lib/${manifest.file.reference.javaee.jar} ${manifest.file.reference.jndi-properties.jar} lib/${manifest.file.reference.jndi-properties.jar} ${manifest.file.reference.mysql-connector-java-5.1.21-bin.jar} lib/${manifest.file.reference.mysql-connector-java-5.1.21-bin.jar} ${manifest.libs.swing-layout.classpath} lib/${manifest.libs.swing-layout.classpath} "/>
         </manifest>
     </target>
     <target name="-copy-meta-inf">

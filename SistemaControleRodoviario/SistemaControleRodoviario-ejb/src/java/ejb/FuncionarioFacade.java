@@ -5,7 +5,7 @@
 package ejb;
 
 import entity.Funcionario;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -13,8 +13,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author Eduardo
  */
-@Stateless
-public class FuncionarioFacade extends AbstractFacade<Funcionario> {
+@Stateful(mappedName="ejb/FuncionarioFacade") 
+public class FuncionarioFacade extends AbstractFacade<Funcionario> implements InterfaceRemota<Funcionario> {
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
 

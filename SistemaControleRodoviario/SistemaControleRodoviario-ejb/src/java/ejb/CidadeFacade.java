@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author Eduardo
  */
 @Stateless
-public class CidadeFacade extends AbstractFacade<Cidade> {
+public class CidadeFacade extends AbstractFacade<Cidade> implements InterfaceRemota<Cidade> {
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
 

@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author Eduardo
  */
 @Stateless
-public class AssentoFacade extends AbstractFacade<Assento> {
+public class AssentoFacade extends AbstractFacade<Assento> implements InterfaceRemota<Assento> {
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
 

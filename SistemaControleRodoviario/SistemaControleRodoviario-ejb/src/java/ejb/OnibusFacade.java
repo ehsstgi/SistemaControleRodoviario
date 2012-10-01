@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author Eduardo
  */
 @Stateless
-public class OnibusFacade extends AbstractFacade<Onibus> {
+public class OnibusFacade extends AbstractFacade<Onibus>implements InterfaceRemota<Onibus> {
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
 

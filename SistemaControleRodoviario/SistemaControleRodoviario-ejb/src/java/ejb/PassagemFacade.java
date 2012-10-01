@@ -18,7 +18,7 @@ import javax.persistence.criteria.Expression;
  * @author Eduardo
  */
 @Stateless
-public class PassagemFacade extends AbstractFacade<Passagem> {
+public class PassagemFacade extends AbstractFacade<Passagem> implements InterfaceRemota<Passagem>{
 
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;

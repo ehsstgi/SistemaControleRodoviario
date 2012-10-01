@@ -9,6 +9,7 @@ import entity.Funcionario;
 import java.util.Properties;
 import javax.naming.*;
 import sistemacontrolerodoviarioclient.Login;
+import util.ContextUtil;
 
 
 /**
@@ -97,10 +98,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
     private void butSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSalvarActionPerformed
         try {
-
-            Properties props = new Properties();
-            props.load(new java.io.FileInputStream("jndi.properties"));
-            InitialContext ctx = new InitialContext(props);
+            InitialContext ctx = ContextUtil.getInitialContext();
             InterfaceRemota ff = (InterfaceRemota) ctx.lookup("ejb/FuncionarioFacade");
             Funcionario funcionario = new Funcionario();
             funcionario.setNome(txtNome.getText());

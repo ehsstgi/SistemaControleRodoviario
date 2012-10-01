@@ -5,16 +5,19 @@
 package ejb;
 
 import entity.Funcionario;
+import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
  * @author Eduardo
  */
-@Stateful(mappedName="ejb/FuncionarioFacade") 
+@Stateful(mappedName = "ejb/FuncionarioFacade")
 public class FuncionarioFacade extends AbstractFacade<Funcionario> implements InterfaceRemota<Funcionario> {
+
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
 
@@ -23,8 +26,14 @@ public class FuncionarioFacade extends AbstractFacade<Funcionario> implements In
         return em;
     }
 
+    public List<Funcionario> verificaLoginFuncionario(Funcionario funcionario) {
+        Query verificaLoginFuncionario = getEntityManager().createNamedQuery("verificaLoginFuncionario");
+        verificaLoginFuncionario.setParameter("nome", funcionario.getNome());
+        verificaLoginFuncionario.setParameter("senha", funcionario.getSenha());
+        return verificaLoginFuncionario.getResultList();
+    }
+
     public FuncionarioFacade() {
         super(Funcionario.class);
     }
-    
 }

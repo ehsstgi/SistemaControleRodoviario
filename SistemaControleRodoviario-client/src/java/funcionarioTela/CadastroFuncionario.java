@@ -98,7 +98,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
     private void butSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSalvarActionPerformed
         try {
-            InitialContext ctx = ContextUtil.getInitialContext();
+             Properties props = new Properties();
+            props.load(new java.io.FileInputStream("jndi.properties"));
+            InitialContext ctx =  new InitialContext(props);
             InterfaceRemota ff = (InterfaceRemota) ctx.lookup("ejb/FuncionarioFacade");
             Funcionario funcionario = new Funcionario();
             funcionario.setNome(txtNome.getText());

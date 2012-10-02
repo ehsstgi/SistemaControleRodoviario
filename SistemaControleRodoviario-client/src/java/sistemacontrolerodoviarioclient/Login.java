@@ -4,6 +4,7 @@
  */
 package sistemacontrolerodoviarioclient;
 
+import controller.FuncionarioController;
 import funcionarioTela.CadastroFuncionario;
 import javax.swing.SwingUtilities;
 
@@ -36,8 +37,6 @@ public class Login extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setText("Login");
 
         jButton1.setText("Entrar");
@@ -55,8 +54,6 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Senha");
-
-        txtSenha.setText("jTextField2");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,7 +73,7 @@ public class Login extends javax.swing.JFrame {
                             .add(jLabel2))
                         .add(57, 57, 57)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(txtSenha)
+                            .add(txtSenha, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                             .add(txtNome))
                         .add(0, 0, Short.MAX_VALUE))))
         );
@@ -112,7 +109,16 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
+        FuncionarioController fc = new FuncionarioController();
+        if (fc.login(txtNome.getText(), txtSenha.getText())) {
+            MenuPricipal mp = new MenuPricipal();
+            SwingUtilities.updateComponentTreeUI(this);
+            mp.setVisible(true);
+            this.setVisible(false);
+        } else {
+            //mensagem
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

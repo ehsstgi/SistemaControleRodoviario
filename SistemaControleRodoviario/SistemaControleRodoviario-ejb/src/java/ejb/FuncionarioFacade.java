@@ -16,7 +16,7 @@ import javax.persistence.Query;
  * @author Eduardo
  */
 @Stateful(mappedName = "ejb/FuncionarioFacade")
-public class FuncionarioFacade extends AbstractFacade<Funcionario> implements InterfaceRemota<Funcionario> {
+    public class FuncionarioFacade extends AbstractFacade<Funcionario> implements FuncionarioRemote {
 
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
@@ -26,6 +26,7 @@ public class FuncionarioFacade extends AbstractFacade<Funcionario> implements In
         return em;
     }
 
+    
     public List<Funcionario> verificaLoginFuncionario(Funcionario funcionario) {
         Query verificaLoginFuncionario = getEntityManager().createNamedQuery("verificaLoginFuncionario");
         verificaLoginFuncionario.setParameter("nome", funcionario.getNome());

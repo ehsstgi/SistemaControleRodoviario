@@ -18,21 +18,33 @@ import util.ContextUtil;
 public class FuncionarioController {
 
     private InitialContext ctx = ContextUtil.getInitialContext();
-    private FuncionarioRemote ff;
+    private FuncionarioRemote funcionarioRemote;
     private Funcionario current;
-    private InterfaceRemota<Funcionario> ir;
+    private InterfaceRemota<Funcionario> interfaceRemota;
+    private static FuncionarioController funcionarioController;
 
-    private FuncionarioRemote getFuncionarioRemote() throws Exception {
-        if (ff == null) {
-            ff = (FuncionarioRemote) ctx.lookup("ejb/FuncionarioFacade");
+    private FuncionarioController(){
+        
+    }
+    public static FuncionarioController getFuncionarioController(){
+        if (funcionarioController==null){
+            funcionarioController= new FuncionarioController();
         }
-        return ff;
+        return funcionarioController;
+    }
+    
+    
+    private FuncionarioRemote getFuncionarioRemote() throws Exception {
+        if (funcionarioRemote == null) {
+            funcionarioRemote = (FuncionarioRemote) ctx.lookup("ejb/FuncionarioFacade");
+        }
+        return funcionarioRemote;
     }
     private InterfaceRemota<Funcionario> getFuncionarioFacade() throws Exception {
-        if (ir == null) {
-            ir = (InterfaceRemota<Funcionario>) ctx.lookup("ejb/FuncionarioFacade");
+        if (interfaceRemota == null) {
+            interfaceRemota = (InterfaceRemota<Funcionario>) ctx.lookup("ejb/FuncionarioFacade");
         }
-        return ir;
+        return interfaceRemota;
     }
 
     public Funcionario getSelected() {

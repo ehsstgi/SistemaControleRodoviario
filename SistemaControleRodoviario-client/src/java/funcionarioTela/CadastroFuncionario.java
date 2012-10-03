@@ -4,12 +4,8 @@
  */
 package funcionarioTela;
 
-import ejb.InterfaceRemota;
-import entity.Funcionario;
-import java.util.Properties;
-import javax.naming.*;
+import controller.FuncionarioController;
 import sistemacontrolerodoviarioclient.Login;
-import util.ContextUtil;
 
 
 /**
@@ -98,14 +94,8 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
     private void butSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSalvarActionPerformed
         try {
-             Properties props = new Properties();
-            props.load(new java.io.FileInputStream("jndi.properties"));
-            InitialContext ctx =  new InitialContext(props);
-            InterfaceRemota ff = (InterfaceRemota) ctx.lookup("ejb/FuncionarioFacade");
-            Funcionario funcionario = new Funcionario();
-            funcionario.setNome(txtNome.getText());
-            funcionario.setSenha(txtCargo.getText());
-            ff.create(funcionario);
+            FuncionarioController fc = FuncionarioController.getFuncionarioController();
+            fc.create(txtNome.getText(), txtCargo.getText());
             this.setVisible(false);
             Login login = new Login();
             login.setVisible(true);

@@ -109,7 +109,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FuncionarioController fc = new FuncionarioController();
+        FuncionarioController fc = FuncionarioController.getFuncionarioController();
         if (fc.login(txtNome.getText(), txtSenha.getText())) {
             MenuPricipal mp = new MenuPricipal();
             SwingUtilities.updateComponentTreeUI(this);

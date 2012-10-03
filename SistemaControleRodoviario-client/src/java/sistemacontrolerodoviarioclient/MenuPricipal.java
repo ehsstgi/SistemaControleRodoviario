@@ -4,6 +4,8 @@
  */
 package sistemacontrolerodoviarioclient;
 
+import assentoTela.CadastroAssento;
+import cidadeTela.CadastroCidade;
 import funcionarioTela.CadastroFuncionario;
 import javax.swing.SwingUtilities;
 
@@ -39,6 +41,9 @@ public class MenuPricipal extends javax.swing.JFrame {
         butListaLinha = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        butCadastroCidade = new javax.swing.JButton();
+        butCadastroAssento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,13 +72,29 @@ public class MenuPricipal extends javax.swing.JFrame {
 
         jLabel2.setText("Listas");
 
+        jButton1.setText("Listar Cidades");
+
+        butCadastroCidade.setText("Cadastro de Cidades");
+        butCadastroCidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCadastroCidadeActionPerformed(evt);
+            }
+        });
+
+        butCadastroAssento.setText("Cadastro de Assentos");
+        butCadastroAssento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCadastroAssentoActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(butCadastroOnibus)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(butListaOnibus)
                 .addContainerGap())
             .add(layout.createSequentialGroup()
@@ -90,10 +111,20 @@ public class MenuPricipal extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jLabel2)
                 .add(70, 70, 70))
-            .add(layout.createSequentialGroup()
-                .add(butCadastroRota)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(butCadastroRota)
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(butCadastroCidade)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(butListaRota))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jButton1)
+                    .add(butListaRota)))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(butCadastroAssento)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -118,20 +149,38 @@ public class MenuPricipal extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(butCadastroRota)
                     .add(butListaRota))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jButton1)
+                    .add(butCadastroCidade))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(butCadastroAssento)
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void butCadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCadastroFuncionarioActionPerformed
-//        cadastroFuncionarioerrado cf = new cadastroFuncionarioerrado();
-//        cf.setVisible(true);
+
         CadastroFuncionario cf = new CadastroFuncionario();
         this.setContentPane(cf);
         SwingUtilities.updateComponentTreeUI(this);
         cf.setVisible(true);
     }//GEN-LAST:event_butCadastroFuncionarioActionPerformed
+
+    private void butCadastroCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCadastroCidadeActionPerformed
+        CadastroCidade cc = new CadastroCidade();
+        this.setContentPane(cc);
+        SwingUtilities.updateComponentTreeUI(this);
+        cc.setVisible(true);
+    }//GEN-LAST:event_butCadastroCidadeActionPerformed
+
+    private void butCadastroAssentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCadastroAssentoActionPerformed
+        CadastroAssento ca = new CadastroAssento();
+        this.setContentPane(ca);
+        SwingUtilities.updateComponentTreeUI(this);
+        ca.setVisible(true);    }//GEN-LAST:event_butCadastroAssentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,13 +217,14 @@ public class MenuPricipal extends javax.swing.JFrame {
          * Create and display the form
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
                 new MenuPricipal().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butCadastroAssento;
+    private javax.swing.JButton butCadastroCidade;
     private javax.swing.JButton butCadastroFuncionario;
     private javax.swing.JButton butCadastroOnibus;
     private javax.swing.JButton butCadastroRota;
@@ -183,6 +233,7 @@ public class MenuPricipal extends javax.swing.JFrame {
     private javax.swing.JButton butListaLinha;
     private javax.swing.JButton butListaOnibus;
     private javax.swing.JButton butListaRota;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

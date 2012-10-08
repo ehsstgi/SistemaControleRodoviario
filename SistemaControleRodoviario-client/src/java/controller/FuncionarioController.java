@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dataTransferObject.FuncionarioTO;
 import ejb.FuncionarioRemote;
 import ejb.InterfaceRemota;
 import entity.Funcionario;
@@ -23,23 +24,23 @@ public class FuncionarioController {
     private InterfaceRemota<Funcionario> interfaceRemota;
     private static FuncionarioController funcionarioController;
 
-    private FuncionarioController(){
-        
+    private FuncionarioController() {
     }
-    public static FuncionarioController getFuncionarioController(){
-        if (funcionarioController==null){
-            funcionarioController= new FuncionarioController();
+
+    public static FuncionarioController getFuncionarioController() {
+        if (funcionarioController == null) {
+            funcionarioController = new FuncionarioController();
         }
         return funcionarioController;
     }
-    
-    
+
     private FuncionarioRemote getFuncionarioRemote() throws Exception {
         if (funcionarioRemote == null) {
             funcionarioRemote = (FuncionarioRemote) ctx.lookup("ejb/FuncionarioFacade");
         }
         return funcionarioRemote;
     }
+
     private InterfaceRemota<Funcionario> getFuncionarioFacade() throws Exception {
         if (interfaceRemota == null) {
             interfaceRemota = (InterfaceRemota<Funcionario>) ctx.lookup("ejb/FuncionarioFacade");
@@ -70,16 +71,20 @@ public class FuncionarioController {
         }
     }
 
-    public boolean create(String nome, String senha) {
+    public boolean create(FuncionarioTO fTO) {
         try {
-            current = new Funcionario();
-            current.setNome(nome);
-            current.setSenha(senha);
+            current = dtoParaEntity(fTO);
             getFuncionarioFacade().create(current);
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
 
+    private Funcionario dtoParaEntity(FuncionarioTO fTO) {
+        Funcionario f = new Funcionario();
+        f.setNome(fTO.getNome());
+        f.setSenha(fTO.getSenha());
+        return f;
     }
 }

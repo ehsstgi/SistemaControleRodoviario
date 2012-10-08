@@ -7,11 +7,9 @@ package ejb;
 import entity.Passagem;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.faces.model.ListDataModel;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.Expression;
 
 /**
  *

@@ -47,6 +47,11 @@ public class CadastroAssento extends javax.swing.JPanel {
         });
 
         butCancelar.setText("Cancelar");
+        butCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCancelarActionPerformed(evt);
+            }
+        });
 
         txtNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +103,7 @@ public class CadastroAssento extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNumeroActionPerformed
 
     private void butSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSalvarActionPerformed
-         try {
+        try {
             AssentoController ac = AssentoController.getAssentoController();
             if (ac.create(txtNumero.getText())) {
                 this.setVisible(false);
@@ -111,6 +116,10 @@ public class CadastroAssento extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_butSalvarActionPerformed
 
+    private void butCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCancelarActionPerformed
+        this.setVisible(false);
+        MenuPricipal mp = new MenuPricipal();
+        mp.setVisible(true);    }//GEN-LAST:event_butCancelarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butCancelar;
     private javax.swing.JButton butSalvar;

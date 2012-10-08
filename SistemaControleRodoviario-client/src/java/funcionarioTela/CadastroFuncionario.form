@@ -29,7 +29,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="txtCargo" max="32767" attributes="0"/>
+                  <Component id="txtSenha" max="32767" attributes="0"/>
                   <Component id="txtNome" pref="247" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
@@ -53,7 +53,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Senha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="76" max="32767" attributes="0"/>
@@ -71,7 +71,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNome">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCargo">
+    <Component class="javax.swing.JTextField" name="txtSenha">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

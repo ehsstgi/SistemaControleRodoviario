@@ -29,7 +29,7 @@
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_assento}" for="assento" />
                     <h:selectOneMenu id="assento" value="#{passagemController.selected.assento}" title="#{bundle.CreatePassagemTitle_assento}" >
-                        <f:selectItems value="#{assentoController.itemsAvailableSelectOne}"/>
+                        <f:selectItems value="#{passagemController.itemsAvailableSelectOneAssento}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_horaSaida}" for="horaSaida" />
                     <h:inputText id="horaSaida" value="#{passagemController.selected.horaSaida}" title="#{bundle.CreatePassagemTitle_horaSaida}" />

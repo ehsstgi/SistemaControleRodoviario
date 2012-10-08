@@ -5,6 +5,7 @@
 package funcionarioTela;
 
 import controller.FuncionarioController;
+import dataTransferObject.FuncionarioTO;
 import sistemacontrolerodoviarioclient.Login;
 
 
@@ -13,7 +14,7 @@ import sistemacontrolerodoviarioclient.Login;
  * @author Eduardo
  */
 public class CadastroFuncionario extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form CadastroFuncionario
      */
@@ -32,7 +33,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtCargo = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         Senha = new javax.swing.JLabel();
         butSalvar = new javax.swing.JButton();
@@ -65,7 +66,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                     .add(Senha))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(txtCargo)
+                    .add(txtSenha)
                     .add(txtNome, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
                 .add(97, 97, 97))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
@@ -84,7 +85,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                     .add(jLabel2))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(txtCargo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(txtSenha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(Senha))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 76, Short.MAX_VALUE)
                 .add(butSalvar)
@@ -95,7 +96,10 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     private void butSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSalvarActionPerformed
         try {
             FuncionarioController fc = FuncionarioController.getFuncionarioController();
-            fc.create(txtNome.getText(), txtCargo.getText());
+            FuncionarioTO fTO = new FuncionarioTO();
+            fTO.setNome(txtNome.getText());
+            fTO.setSenha(txtSenha.getText());
+            fc.create(fTO);
             this.setVisible(false);
             Login login = new Login();
             login.setVisible(true);
@@ -110,7 +114,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     private javax.swing.JButton butSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtCargo;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

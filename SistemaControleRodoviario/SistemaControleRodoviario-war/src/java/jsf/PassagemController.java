@@ -27,6 +27,8 @@ public class PassagemController implements Serializable {
     private DataModel items = null;
     @EJB
     private ejb.PassagemFacade ejbFacade;
+    @EJB
+    private ejb.AssentoFacade ejbAssentoFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -186,6 +188,9 @@ public class PassagemController implements Serializable {
 
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
+    }
+    public SelectItem[] getItemsAvailableSelectOneAssento() {
+        return JsfUtil.getSelectItems(ejbAssentoFacade.findAll(), true);
     }
 
     @FacesConverter(forClass = Passagem.class)

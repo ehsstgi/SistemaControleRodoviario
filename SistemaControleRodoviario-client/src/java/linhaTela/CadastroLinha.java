@@ -4,6 +4,8 @@
  */
 package linhaTela;
 
+import sistemacontrolerodoviarioclient.MenuPricipal;
+
 /**
  *
  * @author Eduardo
@@ -52,6 +54,11 @@ public class CadastroLinha extends javax.swing.JPanel {
         butSalvar.setText("Salvar");
 
         butCancelar.setText("Cancelar");
+        butCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Cadastro de Linhas");
 
@@ -119,6 +126,13 @@ public class CadastroLinha extends javax.swing.JPanel {
     private void listOrigemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listOrigemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_listOrigemActionPerformed
+
+    private void butCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCancelarActionPerformed
+
+        this.setVisible(false);
+        MenuPricipal mp = new MenuPricipal();
+        mp.setVisible(true); 
+    }//GEN-LAST:event_butCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butCancelar;

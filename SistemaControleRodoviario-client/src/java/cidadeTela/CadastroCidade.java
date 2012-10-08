@@ -47,6 +47,11 @@ public class CadastroCidade extends javax.swing.JPanel {
         });
 
         butCancelar.setText("Cancelar");
+        butCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCancelarActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -98,6 +103,11 @@ public class CadastroCidade extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_butSalvarActionPerformed
+
+    private void butCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCancelarActionPerformed
+        this.setVisible(false);
+        MenuPricipal mp = new MenuPricipal();
+        mp.setVisible(true);    }//GEN-LAST:event_butCancelarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butCancelar;
     private javax.swing.JButton butSalvar;

@@ -1,5 +1,6 @@
 package jsf;
 
+import ejb.InterfaceLocal;
 import entity.Passagem;
 import jsf.util.JsfUtil;
 import jsf.util.PaginationHelper;
@@ -27,8 +28,8 @@ public class PassagemController implements Serializable {
     private DataModel items = null;
     @EJB
     private ejb.PassagemFacade ejbFacade;
-    @EJB
-    private ejb.AssentoFacade ejbAssentoFacade;
+    @EJB (mappedName="ejb/AssentoFacade")
+    private InterfaceLocal ejbAssentoFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

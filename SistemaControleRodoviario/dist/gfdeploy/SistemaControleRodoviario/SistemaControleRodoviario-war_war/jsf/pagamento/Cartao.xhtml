@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Pagamento"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Valor:" for="valor" />
+                    <h:outputLabel value="#{passagemController.selected.rota.valor}" for="rotaValor" />
+                    <h:outputLabel value="Bandeira" for="bandeira" />
+                    <h:inputText id="bandeira" value="#{cartaoController.selected.bandeira}" title="#{bundle.CreateUsuarioTitle_nome}" />
+                    <h:outputLabel value="Nome do Titular" for="nome" />
+                    <h:inputText id="nomeTitular" value="#{cartaoController.selected.nomeTitular}" title="#{bundle.CreateUsuarioTitle_nome}" />
+                    <h:outputLabel value="Número do Cartão" for="senha" />
+                    <h:inputText id="numeroCartao" value="#{cartaoController.selected.numeroCartao}" title="#{bundle.CreateUsuarioTitle_senha}" />
+                    <h:outputLabel value="Validade Mês:" for="rg" />
+                    <h:inputText id="mes" value="#{cartaoController.selected.mes}" title="#{bundle.CreateUsuarioTitle_rg}" />
+                    <h:outputLabel value="Validade Ano:" for="rg" />
+                    <h:inputText id="ano" value="#{cartaoController.selected.ano}" title="#{bundle.CreateUsuarioTitle_rg}" />
+                    <h:outputLabel value="Código de Segurança:" for="rg" />
+                    <h:inputText id="codigo" value="#{cartaoController.selected.codigo}" title="#{bundle.CreateUsuarioTitle_rg}" />
+
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{passagemController.create}" value="Confirmar" />
+                <br />
+                <br />
+
+                <h:link outcome="/menuPrincipal" value="#{bundle.CreateUsuarioIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

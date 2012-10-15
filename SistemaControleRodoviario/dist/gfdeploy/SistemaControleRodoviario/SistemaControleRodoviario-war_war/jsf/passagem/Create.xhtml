@@ -40,14 +40,11 @@
                      <h:selectOneMenu readonly="true" id="usuario" value="#{passagemController.selected.usuario}" title="#{bundle.CreatePassagemTitle_usuario}" >
                         <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                     <h:inputText id="nomeUsuario" value="#{passagemController.selected.nomeUsuario}" />
-                     <h:inputHidden id="rgUsuario" value="#{passagemController.selected.rgUsuario}" />
-                        
-                   
-                   
+                  
+      
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{passagemController.create}" value="#{bundle.CreatePassagemSaveLink}" />
+                <h:commandLink action="#{passagemController.pagamento}" value="#{bundle.CreatePassagemSaveLink}" />
                 <br />
                 <br />
                 <h:commandLink action="#{passagemController.prepareList}" value="#{bundle.CreatePassagemShowAllLink}" immediate="true"/>

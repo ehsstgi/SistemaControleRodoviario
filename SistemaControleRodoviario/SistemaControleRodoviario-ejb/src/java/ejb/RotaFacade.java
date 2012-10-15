@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Eduardo
  */
-@Stateless (mappedName="ejb/RotaFacade")
+@Stateless (mappedName="ejb/RotaFacade", name="RotaFacade")
 public class RotaFacade extends AbstractFacade<Rota> implements InterfaceRemota<Rota>, InterfaceLocal<Rota> {
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;

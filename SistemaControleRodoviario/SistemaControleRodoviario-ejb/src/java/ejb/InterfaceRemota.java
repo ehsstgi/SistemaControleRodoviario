@@ -13,17 +13,18 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface InterfaceRemota<T> {
+
     public void create(T entity);
 
-    public void edit(T entity) ;
+    public void edit(T entity);
 
     public void remove(T entity);
 
-    public T find(Object id) ;
+    public T find(Object id);
 
-    public List<T> findAll() ;
+    public List<T> findAll();
 
-    public List<T> findRange(int[] range) ;
+    public List<T> findRange(int[] range);
+
     public int count();
-    
 }

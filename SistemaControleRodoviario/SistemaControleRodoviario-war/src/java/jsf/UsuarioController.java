@@ -4,7 +4,6 @@ import ejb.UsuarioFacade;
 import entity.Usuario;
 import jsf.util.JsfUtil;
 import jsf.util.PaginationHelper;
-import ejb.UsuarioLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,14 +11,9 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import javax.naming.InitialContext;
 
 @Named("usuarioController")
 @SessionScoped
@@ -211,50 +205,5 @@ public class UsuarioController implements Serializable {
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
-
-    @FacesConverter(forClass = Usuario.class)
-    public static class UsuarioControllerConverter implements Converter {
-            
-        
        
-        @Override
-        public Object getAsObject(FacesContext facesContext, UIComponent component, String value){
-            if (value == null || value.length() == 0) {
-                return null;
-            }
-            
-            UsuarioController controller = (UsuarioController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "usuarioController");
-            try{
-               controller.ejbFacade = (UsuarioFacade) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/UsuarioFacade"); 
-            }catch(Exception e){
-               e.getStackTrace();
-            }
-            return controller.ejbFacade.find(getKey(value));
-        }
-
-        java.lang.Long getKey(String value) {
-            java.lang.Long key;
-            key = Long.valueOf(value);
-            return key;
-        }
-
-        String getStringKey(java.lang.Long value) {
-            StringBuffer sb = new StringBuffer();
-            sb.append(value);
-            return sb.toString();
-        }
-
-        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
-            if (object == null) {
-                return null;
-            }
-            if (object instanceof Usuario) {
-                Usuario o = (Usuario) object;
-                return getStringKey(o.getId());
-            } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Usuario.class.getName());
-            }
-        }
-    }
 }

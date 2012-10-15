@@ -17,30 +17,32 @@
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_linha}" for="linha" />
                     <h:selectOneMenu id="linha" value="#{passagemController.selected.linha}" title="#{bundle.CreatePassagemTitle_linha}" >
-                        <f:selectItems value="#{linhaController.itemsAvailableSelectOne}"/>
+                        <f:selectItems value="#{passagemController.itemsAvailableSelectOneLinha}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_rota}" for="rota" />
                     <h:selectOneMenu id="rota" value="#{passagemController.selected.rota}" title="#{bundle.CreatePassagemTitle_rota}" >
-                        <f:selectItems value="#{rotaController.itemsAvailableSelectOne}"/>
+                        <f:selectItems  value="#{passagemController.itemsAvailableSelectOneRota}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_onibus}" for="onibus" />
                     <h:selectOneMenu id="onibus" value="#{passagemController.selected.onibus}" title="#{bundle.CreatePassagemTitle_onibus}" >
-                        <f:selectItems value="#{onibusController.itemsAvailableSelectOne}"/>
+                        <f:selectItems value="#{passagemController.itemsAvailableSelectOneOnibus}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_assento}" for="assento" />
-                    <h:selectOneMenu id="assento" value="#{passagemController.selected.assento}" title="#{bundle.CreatePassagemTitle_assento}" >
-                        <f:selectItems value="#{passagemController.itemsAvailableSelectOneAssento}"/>
+                    <h:selectOneMenu  id="assento" value="#{passagemController.selected.assento}" title="#{bundle.CreatePassagemTitle_assento}" >
+                        <f:selectItems  value="#{passagemController.itemsAvailableSelectOneAssento}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreatePassagemLabel_horaSaida}" for="horaSaida" />
-                    <h:inputText id="horaSaida" value="#{passagemController.selected.horaSaida}" title="#{bundle.CreatePassagemTitle_horaSaida}" />
-                    <h:outputLabel value="#{bundle.CreatePassagemLabel_horaChegada}" for="horaChegada" />
-                    <h:inputText id="horaChegada" value="#{passagemController.selected.horaChegada}" title="#{bundle.CreatePassagemTitle_horaChegada}" />
+                   
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_dia}" for="dia" />
-                    <h:inputText id="dia" value="#{passagemController.selected.dia}" title="#{bundle.CreatePassagemTitle_dia}" />
-                    <h:outputLabel value="#{bundle.CreatePassagemLabel_usuario}" for="usuario" />
-                    <h:selectOneMenu id="usuario"  value="#{usuarioController.selected}" title="#{bundle.CreatePassagemTitle_usuario}" >
+                    <h:inputText id="dia" value="#{passagemController.selected.dia}" title="#{bundle.CreatePassagemTitle_dia}" >
+                        <f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                     <h:outputLabel value="#{bundle.CreatePassagemLabel_usuario}" for="usuario" />
+                     <h:selectOneMenu readonly="true" id="usuario" value="#{passagemController.selected.usuario}" title="#{bundle.CreatePassagemTitle_usuario}" >
                         <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+                     <h:inputText id="nomeUsuario" value="#{passagemController.selected.nomeUsuario}" />
+                     <h:inputHidden id="rgUsuario" value="#{passagemController.selected.rgUsuario}" />
+                        
                    
                    
                 </h:panelGrid>

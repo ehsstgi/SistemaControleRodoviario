@@ -4,6 +4,7 @@
  */
 package ejb;
 
+import entity.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -12,8 +13,7 @@ import javax.ejb.Local;
  * @author Eduardo
  */
 @Local
-public interface InterfaceLocal<T> {
-    public List<T> findAll() ;
-    public T find(Object id) ;
+public interface UsuarioLocal extends InterfaceRemota<Usuario> {
+     public List<Usuario> verificaLogin(Usuario usuario);
     
 }

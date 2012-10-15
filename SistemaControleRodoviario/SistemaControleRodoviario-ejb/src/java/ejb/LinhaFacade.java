@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author Eduardo
  */
 @Stateless(mappedName="ejb/LinhaFacade")
-public class LinhaFacade extends AbstractFacade<Linha> implements InterfaceRemota<Linha> {
+public class LinhaFacade extends AbstractFacade<Linha> implements InterfaceRemota<Linha>, InterfaceLocal<Linha> {
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
 

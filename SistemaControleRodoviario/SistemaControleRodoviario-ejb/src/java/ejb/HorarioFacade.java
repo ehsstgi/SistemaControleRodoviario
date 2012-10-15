@@ -4,7 +4,8 @@
  */
 package ejb;
 
-import entity.Rota;
+import entity.Horario;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,8 +14,9 @@ import javax.persistence.PersistenceContext;
  *
  * @author Eduardo
  */
-@Stateless (mappedName="ejb/RotaFacade")
-public class RotaFacade extends AbstractFacade<Rota> implements InterfaceRemota<Rota>, InterfaceLocal<Rota> {
+
+@Stateless
+public class HorarioFacade extends AbstractFacade<Horario> {
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
 
@@ -23,8 +25,8 @@ public class RotaFacade extends AbstractFacade<Rota> implements InterfaceRemota<
         return em;
     }
 
-    public RotaFacade() {
-        super(Rota.class);
+    public HorarioFacade() {
+        super(Horario.class);
     }
     
 }

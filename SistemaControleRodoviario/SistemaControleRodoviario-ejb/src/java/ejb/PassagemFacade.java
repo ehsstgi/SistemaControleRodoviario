@@ -15,8 +15,8 @@ import javax.persistence.Query;
  *
  * @author Eduardo
  */
-@Stateless
-public class PassagemFacade extends AbstractFacade<Passagem> {
+@Stateless (mappedName="ejb/PassagemFacade")
+public class PassagemFacade extends AbstractFacade<Passagem>  implements PassagemLocal{
 
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;

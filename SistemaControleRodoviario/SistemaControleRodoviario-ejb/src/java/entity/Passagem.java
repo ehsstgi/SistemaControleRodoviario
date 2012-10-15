@@ -5,7 +5,7 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,11 +43,11 @@ public class Passagem implements Serializable {
     @ManyToOne
     private Assento assento;
     @Temporal(TemporalType.DATE)
-    private Calendar horaSaida;
-    @Temporal(TemporalType.DATE)
-    private Calendar horaChegada;
-    @Temporal(TemporalType.DATE)
-    private Calendar dia;
+    private Date dia;
+    @ManyToOne
+    private Horario horarioSaida;
+    @ManyToOne
+    private Horario horarioChegada;
     @ManyToOne
     private Usuario usuario;
     @ManyToOne
@@ -55,6 +55,23 @@ public class Passagem implements Serializable {
     private double valor;
     private String nomeUsuario;
     private String RgUsuario;
+
+    public Horario getHorarioSaida() {
+        return horarioSaida;
+    }
+
+    public void setHorarioSaida(Horario horarioSaida) {
+        this.horarioSaida = horarioSaida;
+    }
+
+    public Horario getHorarioChegada() {
+        return horarioChegada;
+    }
+
+    public void setHorarioChegada(Horario horarioChegada) {
+        this.horarioChegada = horarioChegada;
+    }
+
 
     public String getNomeUsuario() {
         return nomeUsuario;
@@ -112,27 +129,11 @@ public class Passagem implements Serializable {
         this.assento = assento;
     }
 
-    public Calendar getHoraSaida() {
-        return horaSaida;
-    }
-
-    public void setHoraSaida(Calendar horaSaida) {
-        this.horaSaida = horaSaida;
-    }
-
-    public Calendar getHoraChegada() {
-        return horaChegada;
-    }
-
-    public void setHoraChegada(Calendar horaChegada) {
-        this.horaChegada = horaChegada;
-    }
-
-    public Calendar getDia() {
+    public Date getDia() {
         return dia;
     }
 
-    public void setDia(Calendar dia) {
+    public void setDia(Date dia) {
         this.dia = dia;
     }
 

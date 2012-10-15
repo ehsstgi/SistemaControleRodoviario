@@ -5,14 +5,11 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,15 +25,16 @@ public class Rota implements Serializable {
     private Cidade origem;
     @ManyToOne
     private Cidade destino;
-    @Temporal(TemporalType.DATE)
-    private Calendar horaOrigem;
-    @Temporal(TemporalType.DATE)
-    private Calendar horaDestino;
+    @ManyToOne
+    private Horario horaOrigem;
+    @ManyToOne
+    private Horario horaDestino;
     private double valor;
 
     public double getValor() {
         return valor;
     }
+    
 
     public void setValor(double valor) {
         this.valor = valor;
@@ -59,19 +57,19 @@ public class Rota implements Serializable {
         this.destino = destino;
     }
 
-    public Calendar getHoraOrigem() {
+    public Horario getHoraOrigem() {
         return horaOrigem;
     }
 
-    public void setHoraOrigem(Calendar horaOrigem) {
+    public void setHoraOrigem(Horario horaOrigem) {
         this.horaOrigem = horaOrigem;
     }
 
-    public Calendar getHoraDestino() {
+    public Horario getHoraDestino() {
         return horaDestino;
     }
 
-    public void setHoraDestino(Calendar horaDestino) {
+    public void setHoraDestino(Horario horaDestino) {
         this.horaDestino = horaDestino;
     }
     

@@ -1,9 +1,10 @@
 package jsf;
 
+import ejb.UsuarioFacade;
 import entity.Usuario;
 import jsf.util.JsfUtil;
 import jsf.util.PaginationHelper;
-import ejb.UsuarioFacade;
+import ejb.UsuarioLocal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.naming.InitialContext;
 
 @Named("usuarioController")
 @SessionScoped
@@ -26,7 +28,7 @@ public class UsuarioController implements Serializable {
     private Usuario current;
     private DataModel items = null;
     @EJB
-    private ejb.UsuarioFacade ejbFacade;
+    private UsuarioFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -212,13 +214,22 @@ public class UsuarioController implements Serializable {
 
     @FacesConverter(forClass = Usuario.class)
     public static class UsuarioControllerConverter implements Converter {
-
-        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            
+        
+       
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value){
             if (value == null || value.length() == 0) {
                 return null;
             }
+            
             UsuarioController controller = (UsuarioController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "usuarioController");
+            try{
+               controller.ejbFacade = (UsuarioFacade) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/UsuarioFacade"); 
+            }catch(Exception e){
+               e.getStackTrace();
+            }
             return controller.ejbFacade.find(getKey(value));
         }
 

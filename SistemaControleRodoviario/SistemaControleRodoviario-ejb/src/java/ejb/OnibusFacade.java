@@ -13,8 +13,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author Eduardo
  */
-@Stateless
-public class OnibusFacade extends AbstractFacade<Onibus>  {
+@Stateless (mappedName="ejb/OnibusFacade")
+public class OnibusFacade extends AbstractFacade<Onibus> implements  InterfaceRemota<Onibus>, InterfaceLocal<Onibus> {
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
 

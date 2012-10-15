@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
  *
  * @author Eduardo
  */
+
 public abstract class AbstractFacade<T> implements InterfaceRemota<T> {
     private Class<T> entityClass;
 

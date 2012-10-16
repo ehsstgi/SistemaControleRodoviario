@@ -26,6 +26,8 @@ import javax.persistence.TemporalType;
         query="SELECT OBJECT(p) FROM Passagem p WHERE p.usuario = :usuario"),
 @NamedQuery(   name="passagemPorUsuarioCount",
         query="SELECT Count(p) FROM Passagem p WHERE p.usuario = :usuario"),
+@NamedQuery(   name="verificaPassagem",
+        query="SELECT OBJECT(p) FROM Passagem p WHERE p.assento = :assento AND p.dia = :dia AND p.rota = :rota AND p.onibus = :onibus"),
 @NamedQuery(   name="passagemPorFuncionario",
         query="SELECT OBJECT(p) FROM Passagem p WHERE p.funcionario = :funcionario"),
 @NamedQuery(   name="passagemWeb",

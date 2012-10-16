@@ -9,15 +9,19 @@
     <h:body>
         Selecione uma opção.
         <br />
-        <h:link outcome="/jsf/passagem/List" value="Show All Passagem Items"/>
+        <h:link outcome="/jsf/passagem/List" value="Mostrar Passagens Compradas"/>
+        <br />
+        <h:form>
+        <h:commandLink action="#{passagemController.prepareCreate}" value="Comprar Nova Passagem"/>
+        </h:form>
         <br />
         <h:link outcome="/jsf/usuario/Edit" value="Editar Dados de Cadastro"/>
         <br/>
         <h:link outcome="/jsf/usuario/View" value="Exibir Dados de Cadastro"/>
         <br/>
         <h:form>
-         <h:commandLink action="#{usuarioController.exit}" value="#{bundle.LoginSair}"/>
-         </h:form>
+            <h:commandLink action="#{usuarioController.exit}" value="#{bundle.LoginSair}"/>
+        </h:form>
     </h:body>
 </html>
 

@@ -20,4 +20,6 @@ public interface PassagemLocal extends InterfaceRemota<Passagem> {
     public List<Passagem> findRangePorUsuario(int[] range, Passagem passagem);
 
     public int countPorUsuario(Passagem passagem);
+
+    public List<Passagem> verificaPassagem(Passagem passagem);
 }

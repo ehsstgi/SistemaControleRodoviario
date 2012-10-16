@@ -3,7 +3,9 @@ package jsf;
 import ejb.InterfaceLocal;
 import ejb.PassagemLocal;
 import entity.Passagem;
+import entity.Usuario;
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -218,6 +220,24 @@ public class PassagemController implements Serializable {
     }
 
     public String pagamento() {
-        return "Pagamento";
+        if (isPassagemValida()) {
+            return "Pagamento";
+        } else {
+            return null;
+        }
+    }
+
+    public boolean isPassagemValida() {
+        try {
+            List<Passagem> verifica = getFacade().verificaPassagem(current);
+            if (verifica.isEmpty()) {
+                return true;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            return false;
+        }
     }
 }

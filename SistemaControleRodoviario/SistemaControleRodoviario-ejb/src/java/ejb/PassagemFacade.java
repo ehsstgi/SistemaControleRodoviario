@@ -25,6 +25,16 @@ public class PassagemFacade extends AbstractFacade<Passagem> implements Passagem
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    @Override
+    public List<Passagem> verificaPassagem(Passagem passagem) {
+        Query verificaPassagem = getEntityManager().createNamedQuery("verificaPassagem");
+        verificaPassagem.setParameter("assento", passagem.getAssento());
+        verificaPassagem.setParameter("dia", passagem.getDia());
+        verificaPassagem.setParameter("rota", passagem.getRota());
+        verificaPassagem.setParameter("onibus", passagem.getOnibus());
+        return verificaPassagem.getResultList();
+    }
 
     @Override
     public List<Passagem> passagemPorUsuario(Passagem passagem) {
@@ -33,6 +43,7 @@ public class PassagemFacade extends AbstractFacade<Passagem> implements Passagem
         return passagemPorUsuario.getResultList();
     }
 
+    @Override
     public List<Passagem> findRangePorUsuario(int[] range, Passagem passagem) {
         Query passagemPorUsuario = getEntityManager().createNamedQuery("passagemPorUsuario");
         passagemPorUsuario.setParameter("usuario", passagem.getUsuario());
@@ -41,6 +52,7 @@ public class PassagemFacade extends AbstractFacade<Passagem> implements Passagem
         return passagemPorUsuario.getResultList();
     }
 
+    @Override
     public int countPorUsuario(Passagem passagem) {
         Query passagemPorUsuario = getEntityManager().createNamedQuery("passagemPorUsuarioCount");
         passagemPorUsuario.setParameter("usuario", passagem.getUsuario());

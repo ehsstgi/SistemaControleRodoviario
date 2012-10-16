@@ -24,7 +24,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPassagemTitle_linha}"/>
                             </f:facet>
-                            <h:outputText value="#{item.linha}"/>
+                            <h:outputText value="#{item.linha.descricao}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -36,20 +36,39 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPassagemTitle_onibus}"/>
                             </f:facet>
-                            <h:outputText value="#{item.onibus}"/>
+                            <h:outputText value="#{item.onibus.descricao}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPassagemTitle_assento}"/>
                             </f:facet>
-                            <h:outputText value="#{item.assento}"/>
+                            <h:outputText value="#{item.assento.numero}"/>
                         </h:column>
                         <h:column>
-                         
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPassagemTitle_dia}"/>
                             </f:facet>
                             <h:outputText value="#{item.dia}"/>
+                        </h:column>
+                           <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_horaSaida}"/>
+                            </f:facet>
+                               <h:outputText value="#{item.horarioSaida.horario}"/>
+                        </h:column>
+                           <h:column>
+                         
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_horaChegada}"/>
+                            </f:facet>
+                               <h:outputText value="#{item.horarioChegada.horario}"/>
+                        </h:column>
+                           <h:column>
+                         
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPassagemTitle_valor}"/>
+                            </f:facet>
+                               <h:outputText value="#{item.valor}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -73,11 +92,7 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{passagemController.prepareView}" value="#{bundle.ListPassagemViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{passagemController.prepareEdit}" value="#{bundle.ListPassagemEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{passagemController.destroy}" value="#{bundle.ListPassagemDestroyLink}"/>
+                            <h:commandLink action="#{passagemController.prepareView}" value="#{bundle.ListPassagemViewLink}"/>              
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
@@ -89,5 +104,4 @@
             </h:form>
         </ui:define>
     </ui:composition>
-
 </html>

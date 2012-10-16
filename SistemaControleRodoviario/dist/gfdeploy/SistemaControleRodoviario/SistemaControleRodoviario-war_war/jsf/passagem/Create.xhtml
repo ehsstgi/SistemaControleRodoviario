@@ -31,23 +31,13 @@
                     <h:selectOneMenu  id="assento" value="#{passagemController.selected.assento}" title="#{bundle.CreatePassagemTitle_assento}" >
                         <f:selectItems  value="#{passagemController.itemsAvailableSelectOneAssento}"/>
                     </h:selectOneMenu>
-                   
                     <h:outputLabel value="#{bundle.CreatePassagemLabel_dia}" for="dia" />
                     <h:inputText id="dia" value="#{passagemController.selected.dia}" title="#{bundle.CreatePassagemTitle_dia}" >
-                        <f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+                        <f:convertDateTime type="date" pattern="dd/MM/yyyy" />
                     </h:inputText>
-                     <h:outputLabel value="#{bundle.CreatePassagemLabel_usuario}" for="usuario" />
-                     <h:selectOneMenu readonly="true" id="usuario" value="#{passagemController.selected.usuario}" title="#{bundle.CreatePassagemTitle_usuario}" >
-                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                  
-      
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{passagemController.pagamento}" value="#{bundle.CreatePassagemSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{passagemController.prepareList}" value="#{bundle.CreatePassagemShowAllLink}" immediate="true"/>
                 <br />
                 <br />
                 <h:link outcome="/menuPrincipal" value="#{bundle.CreatePassagemIndexLink}"/>

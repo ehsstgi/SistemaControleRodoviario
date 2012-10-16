@@ -16,17 +16,25 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewPassagemLabel_linha}"/>
-                    <h:outputText value="#{passagemController.selected.linha}" title="#{bundle.ViewPassagemTitle_linha}"/>
+                    <h:outputText value="#{passagemController.selected.linha.descricao}" title="#{bundle.ViewPassagemTitle_linha}"/>
                     <h:outputText value="#{bundle.ViewPassagemLabel_rota}"/>
-                    <h:outputText value="#{passagemController.selected.rota}" title="#{bundle.ViewPassagemTitle_rota}"/>
+                    <h:outputText value="#{passagemController.selected.rota.destino.nome}" title="#{bundle.ViewPassagemTitle_rota}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_rota}"/>
+                    <h:outputText value="#{passagemController.selected.rota.origem.nome}" title="#{bundle.ViewPassagemTitle_rota}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_valor}"/>
+                    <h:outputText value="#{passagemController.selected.valor}" title="#{bundle.ViewPassagemLabel_valor}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_nomeUsuario}"/>
+                    <h:outputText value="#{passagemController.selected.nomeUsuario}" title="#{bundle.ViewPassagemLabel_nomeUsuario}"/>
+                    <h:outputText value="#{bundle.ViewPassagemLabel_rgUsuario}"/>
+                    <h:outputText value="#{passagemController.selected.rgUsuario}" title="#{bundle.ViewPassagemLabel_rgUsuario}"/>
                     <h:outputText value="#{bundle.ViewPassagemLabel_onibus}"/>
                     <h:outputText value="#{passagemController.selected.onibus}" title="#{bundle.ViewPassagemTitle_onibus}"/>
                     <h:outputText value="#{bundle.ViewPassagemLabel_assento}"/>
                     <h:outputText value="#{passagemController.selected.assento}" title="#{bundle.ViewPassagemTitle_assento}"/>
                     <h:outputText value="#{bundle.ViewPassagemLabel_horaSaida}"/>
-                    <h:outputText value="#{passagemController.selected.horarioSaida}" title="#{bundle.ViewPassagemTitle_horaSaida}"/>
+                    <h:outputText value="#{passagemController.selected.horarioSaida.horario}" title="#{bundle.ViewPassagemTitle_horaSaida}"/>
                     <h:outputText value="#{bundle.ViewPassagemLabel_horaChegada}"/>
-                    <h:outputText value="#{passagemController.selected.horarioChegada}" title="#{bundle.ViewPassagemTitle_horaChegada}"/>
+                    <h:outputText value="#{passagemController.selected.horarioChegada.horario}" title="#{bundle.ViewPassagemTitle_horaChegada}"/>
                     <h:outputText value="#{bundle.ViewPassagemLabel_dia}"/>
                     <h:outputText value="#{passagemController.selected.dia}" title="#{bundle.ViewPassagemTitle_dia}"/>
                     <h:outputText value="#{bundle.ViewPassagemLabel_usuario}"/>
@@ -35,18 +43,9 @@
                     <h:outputText value="#{passagemController.selected.id}" title="#{bundle.ViewPassagemTitle_id}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{passagemController.destroyAndView}" value="#{bundle.ViewPassagemDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewPassagemEditLink}"/>
-                <br />
-                <h:commandLink action="#{passagemController.prepareCreate}" value="#{bundle.ViewPassagemCreateLink}" />
-                <br />
-                <h:commandLink action="#{passagemController.prepareList}" value="#{bundle.ViewPassagemShowAllLink}"/>
-                <br />
-                <br />
                 <h:link outcome="/menuPrincipal" value="#{bundle.ViewPassagemIndexLink}"/>
-
+                <br/>
+                <h:link onclick="window.print()" value="Imprimir"/> 
             </h:form>
         </ui:define>
     </ui:composition>

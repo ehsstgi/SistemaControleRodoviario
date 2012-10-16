@@ -15,8 +15,8 @@ import javax.persistence.Query;
  *
  * @author Eduardo
  */
-@Stateless (mappedName="ejb/PassagemFacade")
-public class PassagemFacade extends AbstractFacade<Passagem>  implements PassagemLocal{
+@Stateless(mappedName = "ejb/PassagemFacade")
+public class PassagemFacade extends AbstractFacade<Passagem> implements PassagemLocal {
 
     @PersistenceContext(unitName = "SistemaControleRodoviario-ejbPU")
     private EntityManager em;
@@ -26,10 +26,25 @@ public class PassagemFacade extends AbstractFacade<Passagem>  implements Passage
         return em;
     }
 
+    @Override
     public List<Passagem> passagemPorUsuario(Passagem passagem) {
         Query passagemPorUsuario = getEntityManager().createNamedQuery("passagemPorUsuario");
         passagemPorUsuario.setParameter("usuario", passagem.getUsuario());
         return passagemPorUsuario.getResultList();
+    }
+
+    public List<Passagem> findRangePorUsuario(int[] range, Passagem passagem) {
+        Query passagemPorUsuario = getEntityManager().createNamedQuery("passagemPorUsuario");
+        passagemPorUsuario.setParameter("usuario", passagem.getUsuario());
+        passagemPorUsuario.setMaxResults(range[1] - range[0]);
+        passagemPorUsuario.setFirstResult(range[0]);
+        return passagemPorUsuario.getResultList();
+    }
+
+    public int countPorUsuario(Passagem passagem) {
+        Query passagemPorUsuario = getEntityManager().createNamedQuery("passagemPorUsuarioCount");
+        passagemPorUsuario.setParameter("usuario", passagem.getUsuario());
+        return ((Long) passagemPorUsuario.getSingleResult()).intValue();
     }
 
     public List<Passagem> passagemPorFuncionario(Passagem passagem) {
@@ -37,16 +52,10 @@ public class PassagemFacade extends AbstractFacade<Passagem>  implements Passage
         passagemPorFuncionario.setParameter("funcionario", passagem.getFuncionario());
         return passagemPorFuncionario.getResultList();
     }
+
     public List<Passagem> passagemWeb(Passagem passagem) {
         Query passagemWeb = getEntityManager().createNamedQuery("passagemWeb");
         return passagemWeb.getResultList();
-    }
-    public int countPorUsuario(Passagem passagem) {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        javax.persistence.criteria.Root<Passagem> rt = cq.from(Passagem.class);
-        cq.select(getEntityManager().getCriteriaBuilder().count(rt));    
-        javax.persistence.Query q = getEntityManager().createQuery(cq);
-        return ((Long) q.getSingleResult()).intValue();
     }
 
     public PassagemFacade() {

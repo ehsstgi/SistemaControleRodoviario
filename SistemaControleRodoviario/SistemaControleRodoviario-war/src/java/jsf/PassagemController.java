@@ -3,23 +3,17 @@ package jsf;
 import ejb.InterfaceLocal;
 import ejb.PassagemLocal;
 import entity.Passagem;
-import jsf.util.JsfUtil;
-import jsf.util.PaginationHelper;
-
 import java.io.Serializable;
-import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
+import javax.inject.Named;
+import jsf.util.JsfUtil;
+import jsf.util.PaginationHelper;
 
 @Named("passagemController")
 @SessionScoped
@@ -39,7 +33,7 @@ public class PassagemController implements Serializable {
     private InterfaceLocal ejbOnibusFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    @Inject 
+    @Inject
     private UsuarioController usuarioController;
 
     public PassagemController() {
@@ -48,7 +42,7 @@ public class PassagemController implements Serializable {
     public Passagem getSelected() {
         if (current == null) {
             current = new Passagem();
-
+            current.setUsuario(usuarioController.getSelected());
             selectedItemIndex = -1;
         }
         return current;
@@ -63,12 +57,12 @@ public class PassagemController implements Serializable {
             pagination = new PaginationHelper(10) {
                 @Override
                 public int getItemsCount() {
-                    return getFacade().count();
+                    return getFacade().countPorUsuario(getSelected());
                 }
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    return new ListDataModel(getFacade().findRangePorUsuario(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}, getSelected()));
                 }
             };
         }
@@ -221,58 +215,6 @@ public class PassagemController implements Serializable {
 
     public SelectItem[] getItemsAvailableSelectOneOnibus() {
         return JsfUtil.getSelectItems(ejbOnibusFacade.findAll(), true);
-    }
-
-    @FacesConverter(forClass = Passagem.class)
-    public static class PassagemControllerConverter implements Converter {
-
-        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
-            if (value == null || value.length() == 0) {
-                return null;
-            }
-            PassagemController controller = (PassagemController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "passagemController");
-            return controller.ejbFacade.find(getKey(value));
-        }
-
-        java.lang.Long getKey(String value) {
-            java.lang.Long key;
-            key = Long.valueOf(value);
-            return key;
-        }
-
-        String getStringKey(java.lang.Long value) {
-            StringBuffer sb = new StringBuffer();
-            sb.append(value);
-            return sb.toString();
-        }
-
-        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
-            if (object == null) {
-                return null;
-            }
-            if (object instanceof Passagem) {
-                Passagem o = (Passagem) object;
-                return getStringKey(o.getId());
-            } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Passagem.class.getName());
-            }
-        }
-    }
-
-    public String passagemPorUsuario() {
-        try {
-            List<Passagem> listaPassagem = getFacade().passagemPorUsuario(current);
-            if (listaPassagem.isEmpty()) {
-                throw new Exception();
-            } else {
-
-                return "MenuPrincipal";
-            }
-        } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
-            return null;
-        }
     }
 
     public String pagamento() {

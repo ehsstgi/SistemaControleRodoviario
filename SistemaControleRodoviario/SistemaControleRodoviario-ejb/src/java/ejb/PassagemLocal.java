@@ -15,7 +15,9 @@ import javax.ejb.Local;
 @Local
 public interface PassagemLocal extends InterfaceRemota<Passagem> {
 
-    public int countPorUsuario(Passagem passagem);
-
     public List<Passagem> passagemPorUsuario(Passagem passagem);
+
+    public List<Passagem> findRangePorUsuario(int[] range, Passagem passagem);
+
+    public int countPorUsuario(Passagem passagem);
 }

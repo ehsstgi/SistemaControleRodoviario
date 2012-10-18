@@ -27,7 +27,7 @@ public class Linha implements Serializable {
     @ManyToOne
     private Cidade origem;
     @ManyToOne
-    private Cidade Destino;
+    private Cidade destino;
     @OneToMany
     private List<Rota> rota;
 
@@ -48,11 +48,11 @@ public class Linha implements Serializable {
     }
 
     public Cidade getDestino() {
-        return Destino;
+        return destino;
     }
 
-    public void setDestino(Cidade Destino) {
-        this.Destino = Destino;
+    public void setDestino(Cidade destino) {
+        this.destino = destino;
     }
 
     public List<Rota> getRota() {

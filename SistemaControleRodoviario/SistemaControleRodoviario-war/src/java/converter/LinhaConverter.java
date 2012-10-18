@@ -17,19 +17,21 @@ import javax.naming.InitialContext;
  * @author Eduardo
  */
 @FacesConverter(forClass = Linha.class)
-public class LinhaConverter implements Converter{
-   private InterfaceLocal<Linha> ejbLinhaFacade;
+public class LinhaConverter implements Converter {
 
+    @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
         if (value == null || value.length() == 0) {
             return null;
         }
         try {
-            ejbLinhaFacade = (InterfaceLocal<Linha>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/LinhaFacade!ejb.InterfaceLocal");
+            InterfaceLocal<Linha> ejbLinhaFacade = (InterfaceLocal<Linha>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/LinhaFacade!ejb.InterfaceLocal");
+            return ejbLinhaFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();
+            return null;
         }
-        return ejbLinhaFacade.find(getKey(value));
+
     }
 
     java.lang.Long getKey(String value) {
@@ -44,6 +46,7 @@ public class LinhaConverter implements Converter{
         return sb.toString();
     }
 
+    @Override
     public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
         if (object == null) {
             return null;
@@ -56,4 +59,3 @@ public class LinhaConverter implements Converter{
         }
     }
 }
-

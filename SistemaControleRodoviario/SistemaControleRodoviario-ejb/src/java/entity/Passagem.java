@@ -58,7 +58,7 @@ public class Passagem implements Serializable {
     private Funcionario funcionario;
     private double valor;
     private String nomeUsuario;
-    private String RgUsuario;
+    private String rgUsuario;
 
     public Horario getHorarioSaida() {
         return horarioSaida;
@@ -86,11 +86,11 @@ public class Passagem implements Serializable {
     }
 
     public String getRgUsuario() {
-        return RgUsuario;
+        return rgUsuario;
     }
 
-    public void setRgUsuario(String RgUsuario) {
-        this.RgUsuario = RgUsuario;
+    public void setRgUsuario(String rgUsuario) {
+        this.rgUsuario = rgUsuario;
     }
 
     public double getValor() {

@@ -19,20 +19,19 @@ import javax.naming.InitialContext;
 @FacesConverter(forClass = Onibus.class)
 public class OnibusConverter implements Converter {
 
-    private InterfaceLocal<Onibus> ejbOnibusFacade;
-
+    @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
         if (value == null || value.length() == 0) {
             return null;
         }
         try {
-            ejbOnibusFacade = (InterfaceLocal<Onibus>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/OnibusFacade!ejb.InterfaceLocal");
-
-
+            InterfaceLocal<Onibus> ejbOnibusFacade = (InterfaceLocal<Onibus>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/OnibusFacade!ejb.InterfaceLocal");
+            return ejbOnibusFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();
+            return null;
         }
-        return ejbOnibusFacade.find(getKey(value));
+
     }
 
     java.lang.Long getKey(String value) {
@@ -47,6 +46,7 @@ public class OnibusConverter implements Converter {
         return sb.toString();
     }
 
+    @Override
     public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
         if (object == null) {
             return null;

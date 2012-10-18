@@ -16,46 +16,48 @@ import javax.naming.InitialContext;
  *
  * @author Eduardo
  */
- @FacesConverter(forClass = Assento.class)
-public class AssentoConverter implements  Converter{
-     InterfaceLocal<Assento> ejbAssentoFacade;
-   public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
-            if (value == null || value.length() == 0) {
-                return null;
-            }
-                        try{
-               ejbAssentoFacade = (InterfaceLocal<Assento>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/AssentoFacade!ejb.InterfaceLocal"); 
-            }catch(Exception e){
-               e.getStackTrace();
-            }
- 
+@FacesConverter(forClass = Assento.class)
+public class AssentoConverter implements Converter {
+
+    @Override
+    public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+
+        if (value == null || value.length() == 0) {
+            return null;
+        }
+        try {
+          InterfaceLocal<Assento>  ejbAssentoFacade = (InterfaceLocal<Assento>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/AssentoFacade!ejb.InterfaceLocal");
             return ejbAssentoFacade.find(getKey(value));
+        } catch (Exception e) {
+            e.getStackTrace();
+            return null;
         }
 
-        java.lang.Long getKey(String value) {
-            java.lang.Long key;
-            key = Long.valueOf(value);
-            return key;
-        }
 
-        String getStringKey(java.lang.Long value) {
-            StringBuffer sb = new StringBuffer();
-            sb.append(value);
-            return sb.toString();
-        }
+    }
 
-        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
-            if (object == null) {
-                return null;
-            }
-            if (object instanceof Assento) {
-                Assento o = (Assento) object;
-                return getStringKey(o.getId());
-            } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Assento.class.getName());
-            }
+    java.lang.Long getKey(String value) {
+        java.lang.Long key;
+        key = Long.valueOf(value);
+        return key;
+    }
+
+    String getStringKey(java.lang.Long value) {
+        StringBuffer sb = new StringBuffer();
+        sb.append(value);
+        return sb.toString();
+    }
+
+    @Override
+    public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+        if (object == null) {
+            return null;
         }
-    
-    
+        if (object instanceof Assento) {
+            Assento o = (Assento) object;
+            return getStringKey(o.getId());
+        } else {
+            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Assento.class.getName());
+        }
+    }
 }
-

@@ -15,11 +15,11 @@ import javax.ejb.Local;
 @Local
 public interface PassagemLocal extends InterfaceRemota<Passagem> {
 
-    public List<Passagem> passagemPorUsuario(Passagem passagem);
+     List<Passagem> passagemPorUsuario(Passagem passagem);
 
-    public List<Passagem> findRangePorUsuario(int[] range, Passagem passagem);
+     List<Passagem> findRangePorUsuario(int[] range, Passagem passagem);
 
-    public int countPorUsuario(Passagem passagem);
+     int countPorUsuario(Passagem passagem);
 
-    public List<Passagem> verificaPassagem(Passagem passagem);
+     List<Passagem> verificaPassagem(Passagem passagem);
 }

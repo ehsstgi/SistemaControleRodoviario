@@ -16,20 +16,22 @@ import javax.naming.InitialContext;
  *
  * @author Eduardo
  */
-  @FacesConverter(forClass = Passagem.class)
+@FacesConverter(forClass = Passagem.class)
 public class PassagemConverter implements Converter {
-     private InterfaceLocal<Passagem> ejbPassagemFacade;
 
+    @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
         if (value == null || value.length() == 0) {
             return null;
         }
         try {
-            ejbPassagemFacade = (InterfaceLocal<Passagem>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/PassagemFacade!ejb.PassagemLocal");
+            InterfaceLocal<Passagem> ejbPassagemFacade = (InterfaceLocal<Passagem>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/PassagemFacade!ejb.PassagemLocal");
+            return ejbPassagemFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();
+            return null;
         }
-        return ejbPassagemFacade.find(getKey(value));
+
     }
 
     java.lang.Long getKey(String value) {
@@ -44,6 +46,7 @@ public class PassagemConverter implements Converter {
         return sb.toString();
     }
 
+    @Override
     public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
         if (object == null) {
             return null;

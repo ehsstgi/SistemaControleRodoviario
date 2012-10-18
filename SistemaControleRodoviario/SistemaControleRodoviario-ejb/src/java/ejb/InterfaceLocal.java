@@ -13,7 +13,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface InterfaceLocal<T> {
-    public List<T> findAll() ;
-    public T find(Object id) ;
-    
+
+    List<T> findAll();
+
+    T find(Object id);
 }

@@ -15,20 +15,20 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="Valor:" for="valor" />
-                    <h:outputLabel value="#{passagemController.selected.rota.valor}" for="rotaValor" />
+                    <h:outputLabel value="Valor:" />
+                    <h:outputLabel value="#{passagemController.selected.rota.valor}" />
                     <h:outputLabel value="Bandeira" for="bandeira" />
-                    <h:inputText id="bandeira" value="#{cartaoController.selected.bandeira}" title="#{bundle.CreateUsuarioTitle_nome}" />
-                    <h:outputLabel value="Nome do Titular" for="nome" />
-                    <h:inputText id="nomeTitular" value="#{cartaoController.selected.nomeTitular}" title="#{bundle.CreateUsuarioTitle_nome}" />
-                    <h:outputLabel value="Número do Cartão" for="senha" />
-                    <h:inputText id="numeroCartao" value="#{cartaoController.selected.numeroCartao}" title="#{bundle.CreateUsuarioTitle_senha}" />
-                    <h:outputLabel value="Validade Mês:" for="rg" />
-                    <h:inputText id="mes" value="#{cartaoController.selected.mes}" title="#{bundle.CreateUsuarioTitle_rg}" />
-                    <h:outputLabel value="Validade Ano:" for="rg" />
-                    <h:inputText id="ano" value="#{cartaoController.selected.ano}" title="#{bundle.CreateUsuarioTitle_rg}" />
-                    <h:outputLabel value="Código de Segurança:" for="rg" />
-                    <h:inputText id="codigo" value="#{cartaoController.selected.codigo}" title="#{bundle.CreateUsuarioTitle_rg}" />
+                    <h:inputText id="bandeira" value="#{cartaoController.selected.bandeira}" />
+                    <h:outputLabel value="Nome do Titular" for="nomeTitular" />
+                    <h:inputText id="nomeTitular" value="#{cartaoController.selected.nomeTitular}"  />
+                    <h:outputLabel value="Número do Cartão" for="numeroCartao" />
+                    <h:inputText id="numeroCartao" value="#{cartaoController.selected.numeroCartao}" />
+                    <h:outputLabel value="Validade Mês:" for="mes" />
+                    <h:inputText id="mes" value="#{cartaoController.selected.mes}"  />
+                    <h:outputLabel value="Validade Ano:" for="ano" />
+                    <h:inputText id="ano" value="#{cartaoController.selected.ano}"  />
+                    <h:outputLabel value="Código de Segurança:" for="codigo" />
+                    <h:inputText id="codigo" value="#{cartaoController.selected.codigo}" />
 
                 </h:panelGrid>
                 <br />

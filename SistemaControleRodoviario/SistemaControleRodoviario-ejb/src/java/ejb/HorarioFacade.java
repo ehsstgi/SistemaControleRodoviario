@@ -5,7 +5,6 @@
 package ejb;
 
 import entity.Horario;
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -18,44 +18,44 @@ import javax.naming.InitialContext;
  */
 @FacesConverter(forClass = Usuario.class)
 public class UsuarioConverter implements Converter {
-    private UsuarioFacade ejbUsuarioFacade;
-        @Override
-        public Object getAsObject(FacesContext facesContext, UIComponent component, String value){
-            if (value == null || value.length() == 0) {
-                return null;
-            }
-           
-            try{
-               ejbUsuarioFacade=(UsuarioFacade) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/UsuarioFacade"); 
-            }catch(Exception e){
-               e.getStackTrace();
-            }
+
+    @Override
+    public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+        if (value == null || value.length() == 0) {
+            return null;
+        }
+
+        try {
+            UsuarioFacade ejbUsuarioFacade = (UsuarioFacade) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/UsuarioFacade");
             return ejbUsuarioFacade.find(getKey(value));
+        } catch (Exception e) {
+            e.getStackTrace();
+            return null;
         }
 
-        java.lang.Long getKey(String value) {
-            java.lang.Long key;
-            key = Long.valueOf(value);
-            return key;
-        }
+    }
 
-        String getStringKey(java.lang.Long value) {
-            StringBuffer sb = new StringBuffer();
-            sb.append(value);
-            return sb.toString();
-        }
+    java.lang.Long getKey(String value) {
+        java.lang.Long key;
+        key = Long.valueOf(value);
+        return key;
+    }
 
-        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
-            if (object == null) {
-                return null;
-            }
-            if (object instanceof Usuario) {
-                Usuario o = (Usuario) object;
-                return getStringKey(o.getId());
-            } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Usuario.class.getName());
-            }
+    String getStringKey(java.lang.Long value) {
+        StringBuffer sb = new StringBuffer();
+        sb.append(value);
+        return sb.toString();
+    }
+
+    public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+        if (object == null) {
+            return null;
+        }
+        if (object instanceof Usuario) {
+            Usuario o = (Usuario) object;
+            return getStringKey(o.getId());
+        } else {
+            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Usuario.class.getName());
         }
     }
-    
-
+}

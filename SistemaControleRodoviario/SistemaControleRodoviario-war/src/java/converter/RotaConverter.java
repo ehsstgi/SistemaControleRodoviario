@@ -19,19 +19,19 @@ import javax.naming.InitialContext;
 @FacesConverter(forClass = Rota.class)
 public class RotaConverter implements Converter {
 
-    private InterfaceLocal<Rota> ejbRotaFacade;
-
+    @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
         if (value == null || value.length() == 0) {
             return null;
         }
         try {
-            ejbRotaFacade = (InterfaceLocal<Rota>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/RotaFacade!ejb.InterfaceLocal");
-
+            InterfaceLocal<Rota> ejbRotaFacade = (InterfaceLocal<Rota>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/RotaFacade!ejb.InterfaceLocal");
+            return ejbRotaFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();
+            return null;
         }
-        return ejbRotaFacade.find(getKey(value));
+
     }
 
     java.lang.Long getKey(String value) {
@@ -46,6 +46,7 @@ public class RotaConverter implements Converter {
         return sb.toString();
     }
 
+    @Override
     public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
         if (object == null) {
             return null;

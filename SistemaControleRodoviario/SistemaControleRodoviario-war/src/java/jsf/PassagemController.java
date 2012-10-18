@@ -3,7 +3,6 @@ package jsf;
 import ejb.InterfaceLocal;
 import ejb.PassagemLocal;
 import entity.Passagem;
-import entity.Usuario;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;

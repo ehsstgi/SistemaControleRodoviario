@@ -9,9 +9,9 @@
     <h:body>
         Selecione uma opção.
         <br />
-        <h:link outcome="/jsf/passagem/List" value="Mostrar Passagens Compradas"/>
+         <h:form>
+        <h:commandLink action="#{passagemController.prepareList}" value="Mostrar Passagens Compradas"/>
         <br />
-        <h:form>
         <h:commandLink action="#{passagemController.prepareCreate}" value="Comprar Nova Passagem"/>
         </h:form>
         <br />

@@ -5,12 +5,13 @@
 package converter;
 
 import ejb.InterfaceLocal;
+import ejb.OnibusFacade;
 import entity.Onibus;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.naming.InitialContext;
+import jsf.util.ServiceLocator;
 
 /**
  *
@@ -25,7 +26,7 @@ public class OnibusConverter implements Converter {
             return null;
         }
         try {
-            InterfaceLocal<Onibus> ejbOnibusFacade = (InterfaceLocal<Onibus>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/OnibusFacade!ejb.InterfaceLocal");
+            InterfaceLocal<Onibus> ejbOnibusFacade = (InterfaceLocal<Onibus>) ServiceLocator.lookupInterfaceLocal(OnibusFacade.class, false);
             return ejbOnibusFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();

@@ -5,12 +5,13 @@
 package converter;
 
 import ejb.InterfaceLocal;
+import ejb.LinhaFacade;
 import entity.Linha;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.naming.InitialContext;
+import jsf.util.ServiceLocator;
 
 /**
  *
@@ -25,7 +26,7 @@ public class LinhaConverter implements Converter {
             return null;
         }
         try {
-            InterfaceLocal<Linha> ejbLinhaFacade = (InterfaceLocal<Linha>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/LinhaFacade!ejb.InterfaceLocal");
+            InterfaceLocal<Linha> ejbLinhaFacade = (InterfaceLocal<Linha>) ServiceLocator.lookupInterfaceLocal(LinhaFacade.class, false);
             return ejbLinhaFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();

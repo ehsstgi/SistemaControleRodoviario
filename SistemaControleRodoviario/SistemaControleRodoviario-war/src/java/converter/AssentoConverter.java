@@ -4,13 +4,14 @@
  */
 package converter;
 
+import ejb.AssentoFacade;
 import ejb.InterfaceLocal;
 import entity.Assento;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.naming.InitialContext;
+import jsf.util.ServiceLocator;
 
 /**
  *
@@ -26,7 +27,7 @@ public class AssentoConverter implements Converter {
             return null;
         }
         try {
-          InterfaceLocal<Assento>  ejbAssentoFacade = (InterfaceLocal<Assento>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/AssentoFacade!ejb.InterfaceLocal");
+            InterfaceLocal<Assento> ejbAssentoFacade = (InterfaceLocal<Assento>) ServiceLocator.lookupInterfaceLocal(AssentoFacade.class, false);
             return ejbAssentoFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();
@@ -61,3 +62,4 @@ public class AssentoConverter implements Converter {
         }
     }
 }
+//     InterfaceLocal<Assento>  ejbAssentoFacade = (InterfaceLocal<Assento>) new InitialContext().lookupInterfaceLocal("java:app/SistemaControleRodoviario-ejb/AssentoFacade!ejb.InterfaceLocal");

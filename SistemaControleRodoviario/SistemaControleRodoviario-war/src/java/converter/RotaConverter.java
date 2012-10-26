@@ -5,12 +5,13 @@
 package converter;
 
 import ejb.InterfaceLocal;
+import ejb.RotaFacade;
 import entity.Rota;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.naming.InitialContext;
+import jsf.util.ServiceLocator;
 
 /**
  *
@@ -25,7 +26,7 @@ public class RotaConverter implements Converter {
             return null;
         }
         try {
-            InterfaceLocal<Rota> ejbRotaFacade = (InterfaceLocal<Rota>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/RotaFacade!ejb.InterfaceLocal");
+            InterfaceLocal<Rota> ejbRotaFacade = (InterfaceLocal<Rota>) ServiceLocator.lookupInterfaceLocal(RotaFacade.class, false);
             return ejbRotaFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();

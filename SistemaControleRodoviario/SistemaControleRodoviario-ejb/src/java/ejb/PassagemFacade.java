@@ -38,7 +38,8 @@ public class PassagemFacade extends AbstractFacade<Passagem> implements Passagem
 
     @Override
     public List<Passagem> passagemPorUsuario(Passagem passagem) {
-        Query passagemPorUsuario = getEntityManager().createNamedQuery("passagemPorUsuario");
+        Query passagemPorUsuario = getEntityManager()
+                .createNamedQuery("passagemPorUsuario");
         passagemPorUsuario.setParameter("usuario", passagem.getUsuario());
         return passagemPorUsuario.getResultList();
     }

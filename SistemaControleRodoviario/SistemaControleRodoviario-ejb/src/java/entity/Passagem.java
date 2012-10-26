@@ -23,15 +23,22 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
 @NamedQuery(   name="passagemPorUsuario",
-        query="SELECT OBJECT(p) FROM Passagem p WHERE p.usuario = :usuario"),
+        query="SELECT OBJECT(p) FROM Passagem p "
+        + "WHERE p.usuario = :usuario"),
 @NamedQuery(   name="passagemPorUsuarioCount",
-        query="SELECT Count(p) FROM Passagem p WHERE p.usuario = :usuario"),
+        query="SELECT Count(p) FROM Passagem p "
+        + "WHERE p.usuario = :usuario"),
 @NamedQuery(   name="verificaPassagem",
-        query="SELECT OBJECT(p) FROM Passagem p WHERE p.assento = :assento AND p.dia = :dia AND p.rota = :rota AND p.onibus = :onibus"),
+        query="SELECT OBJECT(p) FROM Passagem p "
+        + "WHERE p.assento = :assento "
+        + "AND p.dia = :dia "
+        + "AND p.rota = :rota AND p.onibus = :onibus"),
 @NamedQuery(   name="passagemPorFuncionario",
-        query="SELECT OBJECT(p) FROM Passagem p WHERE p.funcionario = :funcionario"),
+        query="SELECT OBJECT(p) FROM Passagem p "
+        + "WHERE p.funcionario = :funcionario"),
 @NamedQuery(   name="passagemWeb",
-        query="SELECT OBJECT(p) FROM Passagem p WHERE p.usuario IS NOT Null"),
+        query="SELECT OBJECT(p) FROM Passagem p "
+        + "WHERE p.usuario IS NOT Null"),
         })
 public class Passagem implements Serializable {
     private static final long serialVersionUID = 1L;

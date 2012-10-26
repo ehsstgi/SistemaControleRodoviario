@@ -10,7 +10,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.naming.InitialContext;
+import jsf.util.ServiceLocator;
 
 /**
  *
@@ -26,7 +26,7 @@ public class UsuarioConverter implements Converter {
         }
 
         try {
-            UsuarioFacade ejbUsuarioFacade = (UsuarioFacade) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/UsuarioFacade");
+            UsuarioFacade ejbUsuarioFacade = (UsuarioFacade) ServiceLocator.lookupNoInterface(UsuarioFacade.class);
             return ejbUsuarioFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();

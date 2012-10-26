@@ -5,12 +5,13 @@
 package converter;
 
 import ejb.InterfaceLocal;
+import ejb.PassagemFacade;
 import entity.Passagem;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.naming.InitialContext;
+import jsf.util.ServiceLocator;
 
 /**
  *
@@ -25,7 +26,7 @@ public class PassagemConverter implements Converter {
             return null;
         }
         try {
-            InterfaceLocal<Passagem> ejbPassagemFacade = (InterfaceLocal<Passagem>) new InitialContext().lookup("java:app/SistemaControleRodoviario-ejb/PassagemFacade!ejb.PassagemLocal");
+            InterfaceLocal<Passagem> ejbPassagemFacade = (InterfaceLocal<Passagem>) ServiceLocator.lookupInterfaceLocal(PassagemFacade.class, true);
             return ejbPassagemFacade.find(getKey(value));
         } catch (Exception e) {
             e.getStackTrace();

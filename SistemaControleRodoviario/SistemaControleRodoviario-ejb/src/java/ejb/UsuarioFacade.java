@@ -27,7 +27,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     }
 
     public List<Usuario> verificaLogin(Usuario usuario) {
-        Query verificaLogin = getEntityManager().createNamedQuery("verificaLogin");
+        Query verificaLogin = getEntityManager().
+                createNamedQuery("verificaLogin");
         verificaLogin.setParameter("nome", usuario.getNome());
         verificaLogin.setParameter("senha", usuario.getSenha());
         return verificaLogin.getResultList();

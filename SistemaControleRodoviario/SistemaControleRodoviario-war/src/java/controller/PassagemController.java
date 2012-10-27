@@ -13,16 +13,18 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.PersistenceException;
 import jsf.util.JsfUtil;
 import jsf.util.PaginationHelper;
 
 @Named("passagemController")
 @SessionScoped
 public class PassagemController implements Serializable {
-    private final String LIST ="List";
-    private final String VIEW ="View";
-    private final String EDIT ="Edit";
-    private final String CREATE ="Create";
+
+    private String list = "List";
+    private String view = "View";
+    private String edit = "Edit";
+    private String create = "Create";
     @Inject
     private UsuarioController usuarioController;
     @EJB(mappedName = "ejb/PassagemFacade")
@@ -75,19 +77,19 @@ public class PassagemController implements Serializable {
 
     public String prepareList() {
         recreateModel();
-        return LIST;
+        return list;
     }
 
     public String prepareView() {
         current = (Passagem) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return VIEW;
+        return view;
     }
 
     public String prepareCreate() {
         current = new Passagem();
         selectedItemIndex = -1;
-        return CREATE;
+        return create;
     }
 
     public String create() {
@@ -100,7 +102,7 @@ public class PassagemController implements Serializable {
             getSelected().setValor(current.getRota().getValor());
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PassagemCreated"));
-            return VIEW;
+            return view;
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -110,14 +112,14 @@ public class PassagemController implements Serializable {
     public String prepareEdit() {
         current = (Passagem) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return EDIT;
+        return edit;
     }
 
     public String update() {
         try {
             getFacade().edit(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PassagemUpdated"));
-            return VIEW;
+            return view;
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
@@ -130,7 +132,7 @@ public class PassagemController implements Serializable {
         performDestroy();
         recreatePagination();
         recreateModel();
-        return LIST;
+        return list;
     }
 
     public String destroyAndView() {
@@ -138,11 +140,11 @@ public class PassagemController implements Serializable {
         recreateModel();
         updateCurrentItem();
         if (selectedItemIndex >= 0) {
-            return VIEW;
+            return view;
         } else {
             // all items were removed - go back to list
             recreateModel();
-            return LIST;
+            return list;
         }
     }
 
@@ -188,13 +190,13 @@ public class PassagemController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
-        return LIST;
+        return list;
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return LIST;
+        return list;
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
@@ -235,7 +237,7 @@ public class PassagemController implements Serializable {
             if (verifica.isEmpty()) {
                 return true;
             } else {
-                throw new Exception();
+                throw new PersistenceException();
             }
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));

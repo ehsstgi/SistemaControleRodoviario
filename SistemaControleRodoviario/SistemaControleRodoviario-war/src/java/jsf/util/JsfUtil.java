@@ -7,7 +7,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 
-public class JsfUtil {
+public final class JsfUtil {
+    
+    private JsfUtil(){
+        
+    }
 
     public static SelectItem[] getSelectItems(List<?> entities, boolean selectOne) {
         int size = selectOne ? entities.size() + 1 : entities.size();

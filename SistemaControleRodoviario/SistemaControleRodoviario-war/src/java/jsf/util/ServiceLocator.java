@@ -12,8 +12,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class ServiceLocator {
-
+public final class ServiceLocator {
+    
+    private ServiceLocator(){
+        
+    }
     private static final String PREFIXO_JNDI = "java:app/SistemaControleRodoviario-ejb/";
 
     @SuppressWarnings("unchecked")
@@ -22,8 +25,7 @@ public class ServiceLocator {
 
         try {
             context = new InitialContext();
-            Object ejb = context.lookup(getJndi(beanClass, isEspecifico));
-            return (T) ejb;
+            return (T) context.lookup(getJndi(beanClass, isEspecifico));
         } catch (NamingException ex) {
             throw new IllegalStateException("Erro ao buscar bean: " + beanClass.getCanonicalName(), ex);
         } finally {
@@ -40,8 +42,7 @@ public class ServiceLocator {
 
         try {
             context = new InitialContext();
-            Object ejb = context.lookup(getJndiNoInterface(beanClass));
-            return (T) ejb;
+            return (T) context.lookup(getJndiNoInterface(beanClass));
         } catch (NamingException ex) {
             throw new IllegalStateException("Erro ao buscar bean: " + beanClass.getCanonicalName(), ex);
         } finally {
@@ -64,7 +65,6 @@ public class ServiceLocator {
         return jndi;
     }
 private static <T> String getJndiNoInterface(Class<T> beanClass) {
-        String jndi = PREFIXO_JNDI + beanClass.getSimpleName();
-        return jndi;
+        return PREFIXO_JNDI + beanClass.getSimpleName();
     }
 }

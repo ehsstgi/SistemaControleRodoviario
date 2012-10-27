@@ -10,6 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
+import javax.persistence.PersistenceException;
 import jsf.util.JsfUtil;
 
 @Named("usuarioController")
@@ -75,7 +76,7 @@ public class UsuarioController implements Serializable {
         try {
             List<Usuario> usuarioLogin = getFacade().verificaLogin(current);
             if (usuarioLogin.isEmpty()) {
-                throw new Exception();
+                throw new PersistenceException();
             } else {
                 current = usuarioLogin.get(0);
                 return "MenuPrincipal";

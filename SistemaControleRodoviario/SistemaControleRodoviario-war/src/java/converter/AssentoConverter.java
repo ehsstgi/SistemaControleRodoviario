@@ -62,4 +62,3 @@ public class AssentoConverter implements Converter {
         }
     }
 }
-//     InterfaceLocal<Assento>  ejbAssentoFacade = (InterfaceLocal<Assento>) new InitialContext().lookupInterfaceLocal("java:app/SistemaControleRodoviario-ejb/AssentoFacade!ejb.InterfaceLocal");
